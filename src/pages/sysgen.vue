@@ -149,7 +149,7 @@
             <div v-for="(item, q) in orbitRadiusArrayPlanets" :key="q">
               <q-input dense input-class="text-right" suffix="AU" outline label="Orbital Radius" v-model.number="item.value">
                  <template v-slot:append>
-                  <q-btn icon="delete" class="text-red"/>
+                  <q-btn icon="delete" class="text-red" @click="orbitRadiusArrayPlanets.splice(q,1)"/>
                 </template>
               </q-input>
             </div>
@@ -162,7 +162,7 @@
             <div v-for="(item, q) in orbitRadiusArrayMoons" :key="q">
               <q-input dense input-class="text-right" suffix="AU" outline label="Orbital Radius" v-model.number="item.value">
                  <template v-slot:append>
-                  <q-btn icon="delete" class="text-red"/>
+                  <q-btn icon="delete" class="text-red" @click="orbitRadiusArrayMoons.splice(q,1)"/>
                 </template>
               </q-input>
             </div>
