@@ -197,18 +197,6 @@ export default {
       useCustomOrbitRadiusArrayMoons: true,
       useCustomParamsForBlackHole: false,
       customParamsForBlackHole: "1,0,2,0,10,0.95,2,0.9,0.5,0.5,0.5,0.5",
-//       ##  int maxTelluricNb : nb max of solid planets in the system in total,
-// ##  int maxGasGiantNb : nb max of Gas Giants in the system in total,
-// ## int maxMoonTelluricNb : nb max of moons around solid planets in the system in total,
-// ##  int maxMoonGasGiantNb : nb max of moons around gas giants in the system in total,
-// ## int jumpOrbitPlanetMax :the first planet of the host star will be on this orbit,
-// ## float chanceJumpOrbitPlanets : lower = denser systems, higher = further away from the star,
-// ## int jumpOrbitMoonMax: the first moon of the host planet will be on this orbit,
-// ## float chanceJumpOrbitMoons: lower = denser systems, higher = further away from the host planet,
-// ## float chanceTelluricPlanet: chance for a telluric planet to spawn,
-// ## float chanceGasGiant: chance for a gas giant to spawn,
-// ## float chanceGasGiantMoon : chance for a moon around a gasgiant to spawn,
-// ## float chanceMoonTelluric : chance for a moon around a telluric planet to spawn
       useCustomParamsForNeutronStar: false,
       customParamsForNeutronStar: "2,1,4,6,8,0.85,2,0.1,0.8,0.2,0.5,0.5",
       useCustomParamsForWhiteDwarf: false,
@@ -229,8 +217,6 @@ export default {
       customParamsForClassM: "6,4,12,16,1,0.7,2,0.2,0.7,0.8,0.6,0.3",
       useCustomParamsForClassO: false,
       customParamsForClassO: "10,4,20,16,4,0.2,2,0.2,0.9,0.5,0.9,0.8",
-      // useCustomParamsForClassX: false
-      // CustomParamsForClassX: 0,0,0,0,0,0.,0,0.,0.,0.,0.,0.
       startingSystemMinPlanetTelluricNb: 8,
       startingSystemMinGasGiantNb: 3,
       startingSystemMinTelluricMoonNb: 16,
@@ -321,26 +307,6 @@ ChanceBeingHabitable = 0.4
 VolcanoPlanetDistanceRatio = 0.3
 IcePlanetDistanceRatio = 1.2`
       this.parseFile(defaultConfig)
-      // this.customParamsForBlackHole = this.setParams("1,0,2,0,10,0.95,2,0.9,0.5,0.5,0.5,0.5")
-      // this.customParamsForNeutronStar = this.setParams("2,1,4,6,8,0.85,2,0.1,0.8,0.2,0.5,0.5")
-      // this.customParamsForWhiteDwarf = this.setParams("3,1,6,6,6,0.8,3,0.5,0.6,0.6,0.7,0.2")
-      // this.customParamsForGiantStar = this.setParams("4,1,8,6,6,0.8,3,0.8,0.6,0.6,0.7,0.2")
-      // this.customParamsForClassA = this.setParams("8,3,16,12,3,0.3,3,0.4,0.7,0.4,0.6,0.5")
-      // this.customParamsForClassB = this.setParams("9,4,18,16,5,0.5,2,0.6,0.8,0.5,0.8,0.5")
-      // this.customParamsForClassF = this.setParams("7,2,14,8,3,0.6,2,0.4,0.8,0.7,0.8,0.2")
-      // this.customParamsForClassG = this.setParams("6,2,12,8,3,0.8,2,0.6,0.8,0.6,0.7,0.3")
-      // this.customParamsForClassK = this.setParams("4,4,8,8,2,0.5,2,0.5,0.8,0.8,0.8,0.2")
-      // this.customParamsForClassM = this.setParams("6,4,12,16,1,0.7,2,0.2,0.7,0.8,0.6,0.3")
-      // this.customParamsForClassO = this.setParams("10,4,20,16,4,0.2,2,0.2,0.9,0.5,0.9,0.8")
-
-      // this.chancePlanetLaySide = 4
-      // this.chanceBigObliquity = 10
-      // this.chanceTidalLock = 10
-      // this.chanceTidalLock1 = 4
-      // this.chanceTidalLock2 = 7
-      // this.chanceRetrogradeOrbit = 5
-      // this.chanceBeingHabitable = 40
-
   },
   methods: {
     updateOptions(options) {
@@ -351,7 +317,6 @@ IcePlanetDistanceRatio = 1.2`
         if (value === 'true') options[i] = true;
         if (value === 'false') options[i] = false;
       }
-      // console.log(options);
       let orap = options.customOrbitRadiusArrayPlanets.split(',');
       orap.shift();
       let oram = options.customOrbitRadiusArrayMoon.split(',');
@@ -362,7 +327,6 @@ IcePlanetDistanceRatio = 1.2`
       oram.forEach((item,i) => {
         oram[i] = { value: item };
       });
-      // console.log(oram, orax);
       this.orbitRadiusArrayMoons = oram;
       this.orbitRadiusArrayPlanets = orap;
       this.enableCustomStarAlgorithm = options.enableCustomStarAlgorithm;
