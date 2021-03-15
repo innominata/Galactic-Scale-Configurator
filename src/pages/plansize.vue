@@ -231,7 +231,6 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
       this.baseTelluricSize = options.baseTelluricSize;
       this.baseTelluricSizeVariationFactor = options.baseTelluricSizeVariationFactor;
       if (options.enableLimitedResizingFeature == "true") this.basic = true;
-      // console.log(options.enableResizingFeature, 'erf', !!options.enableResizingFeature);
       if (options.enableResizingFeature == "true") this.basic = false;
       this.enableMoonSizeFailSafe = (options.enableMoonSizeFailSafe == "true")?true:false;
       this.maxTelluricSize = options.maxTelluricSize;
@@ -258,14 +257,8 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
         console.log({size, chance: lrc[n]});
         this.planetRadiusArray.push({size, chance: lrc[n]});
       });
-//       planetRadiusArray: [{ size: 50, chance: 5 }, { size: 100, chance: 3 }, { size: 200, chance: 2 }],
-// limitedResizingArray: "150,500,600"
-// limitedResizingChances: "0.5,0.8,1"
-
     },
     loadFile(file) {
-      console.log('file parse');
-      console.log(this.file);
       const reader = new FileReader();
       reader.onload = () => { this.parseFile(reader.result)};
       reader.readAsText(file);
@@ -299,10 +292,8 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
         let key = explodedLine[0];
         const val = explodedLine[2];
         key = key[0].toLowerCase() + key.substr(1,key.length-1);
-        // console.log('Setting', key, val);
         options[key] = val;
       });
-      // console.log(options);
       this.updateOptions(options);
 
     },
