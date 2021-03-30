@@ -43,7 +43,7 @@
     </q-page-container>
 
      <q-footer bordered dark class="bg-grey-10 text-weight-thin text-right q-pa-xs" style="font-size:10px">
-      
+
           innovented by @innominata
 
     </q-footer>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-window.version = { value: '1.3.1.3'}
+window.version = { value: '1.3.2.1'}
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
@@ -66,7 +66,21 @@ const linksData = [
     caption: '',
     icon: 'insights',
     link: '/sysgen'
-  },{title:'Space', link: ''},
+  },
+  {
+    title: 'How to use',
+    caption: '',
+    icon: 'las la-question',
+    link: '/faq'
+  },
+  {
+    title: 'Galactic Scale Homepage',
+    caption: '',
+    icon: 'las la-meteor',
+    link: 'http://customizing.space'
+  },
+  {title:'Space',
+   link: ''},
   {
     title: 'MMZ Timelord\'s Config Generator',
     caption: 'The Original Config Generator',
@@ -110,7 +124,6 @@ export default {
   created () {
     this.$q.dark.set(true)
     console.log(this.$q.dark.isActive)
-    this.version = window.version.value
   }
 }
 </script>

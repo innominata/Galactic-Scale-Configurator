@@ -1,0 +1,2879 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"star",
+				"starType"
+			],
+			[
+				"random",
+				"random_int"
+			],
+			[
+				"seed",
+				"seedGenerator"
+			],
+			[
+				"group",
+				"groupCollapsed"
+			],
+			[
+				"compo",
+				"componentName"
+			],
+			[
+				"current",
+				"currentSettings"
+			],
+			[
+				"null",
+				"null200"
+			],
+			[
+				"nbo",
+				"nbOfMoonsTelluric"
+			],
+			[
+				"nbofmo",
+				"nbOfMoonsPlanet"
+			],
+			[
+				"const",
+				"constructor"
+			],
+			[
+				"SMS",
+				"SMSettings"
+			],
+			[
+				"base",
+				"BaseDef"
+			],
+			[
+				"Base",
+				"BaseDef"
+			],
+			[
+				"gcd",
+				"gcd_more_than_two_numbers"
+			],
+			[
+				"galactic-s",
+				"galactic-scale-systems"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/inno/Documents/customizing.space/src/components/iStar.vue",
+			"settings":
+			{
+				"buffer_size": 5500,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/inno/Documents/customizing.space/src/components/iPlanet.vue",
+			"settings":
+			{
+				"buffer_size": 3121,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/inno/Documents/customizing.space/src/layouts/MainLayout.vue",
+			"settings":
+			{
+				"buffer_size": 2607,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/inno/Documents/customizing.space/src/pages/inno.vue",
+			"settings":
+			{
+				"buffer_size": 2036,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 3566 files for \"modData\"\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetData.cs:\n   62    public long[] veinAmounts;\n   63    public PlanetData.VeinGroup[] veinGroups;\n   64:   public byte[] modData;\n   65    public int precision = 160;\n   66    public int segment = 5;\n   ..\n  704    public void ExportRuntime(BinaryWriter w)\n  705    {\n  706:     w.Write(this.modData.Length);\n  707:     w.Write(this.modData);\n  708      w.Write(this.veinAmounts.Length);\n  709      for (int index = 0; index < this.veinAmounts.Length; ++index)\n  ...\n  724    {\n  725      int count = r.ReadInt32();\n  726:     this.modData = r.ReadBytes(count);\n  727      int length1 = r.ReadInt32();\n  728      this.veinAmounts = new long[length1];\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetModelingManager.cs:\n  456                  highStopwatch.Begin();\n  457                  planetData.data = new PlanetRawData(planetData.precision);\n  458:                 planetData.modData = planetData.data.InitModData(planetData.modData);\n  459                  planetData.data.CalcVerts();\n  460                  planetData.aux = new PlanetAuxData(planetData);\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetRawData.cs:\n   12    public int precision;\n   13    public ushort[] heightData;\n   14:   public byte[] modData;\n   15    public ushort[] vegeIds;\n   16    public byte[] biomoData;\n   ..\n   62    }\n   63  \n   64:   public byte[] InitModData(byte[] refModData)\n   65    {\n   66:     this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n   67:     return this.modData;\n   68    }\n   69  \n   ..\n  242    }\n  243  \n  244:   public int GetModLevel(int index) => (int) this.modData[index >> 1] >> ((index & 1) << 2) & 3;\n  245  \n  246:   public short GetModPlane(int index) => (short) (((int) this.modData[index >> 1] >> ((index & 1) << 2) + 2 & 3) * 133 + 20020);\n  247  \n  248    public void SetModLevel(int index, int level)\n  ...\n  251      int num2 = ~(3 << num1);\n  252      int num3 = (level & 3) << num1;\n  253:     this.modData[index >> 1] &= (byte) num2;\n  254:     this.modData[index >> 1] |= (byte) num3;\n  255    }\n  256  \n  ...\n  264      int num2 = ~(3 << num1);\n  265      int num3 = (plane & 3) << num1;\n  266:     this.modData[index >> 1] &= (byte) num2;\n  267:     this.modData[index >> 1] |= (byte) num3;\n  268    }\n  269  \n  270    public bool AddModLevel(int index, int level)\n  271    {\n  272:     int num1 = (int) this.modData[index >> 1] >> ((index & 1) << 2) & 3;\n  273      level += num1;\n  274      if (level > 3)\n  ...\n  279      int num3 = ~(3 << num2);\n  280      int num4 = (level & 3) << num2;\n  281:     this.modData[index >> 1] &= (byte) num3;\n  282:     this.modData[index >> 1] |= (byte) num4;\n  283      return true;\n  284    }\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetData.cs:\n   62    public long[] veinAmounts;\n   63    public PlanetData.VeinGroup[] veinGroups;\n   64:   public byte[] modData;\n   65    public int precision = 160;\n   66    public int segment = 5;\n   ..\n  704    public void ExportRuntime(BinaryWriter w)\n  705    {\n  706:     w.Write(this.modData.Length);\n  707:     w.Write(this.modData);\n  708      w.Write(this.veinAmounts.Length);\n  709      for (int index = 0; index < this.veinAmounts.Length; ++index)\n  ...\n  724    {\n  725      int count = r.ReadInt32();\n  726:     this.modData = r.ReadBytes(count);\n  727      int length1 = r.ReadInt32();\n  728      this.veinAmounts = new long[length1];\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetModelingManager.cs:\n  456                  highStopwatch.Begin();\n  457                  planetData.data = new PlanetRawData(planetData.precision);\n  458:                 planetData.modData = planetData.data.InitModData(planetData.modData);\n  459                  planetData.data.CalcVerts();\n  460                  planetData.aux = new PlanetAuxData(planetData);\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetRawData.cs:\n   12    public int precision;\n   13    public ushort[] heightData;\n   14:   public byte[] modData;\n   15    public ushort[] vegeIds;\n   16    public byte[] biomoData;\n   ..\n   62    }\n   63  \n   64:   public byte[] InitModData(byte[] refModData)\n   65    {\n   66:     this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n   67:     return this.modData;\n   68    }\n   69  \n   ..\n  242    }\n  243  \n  244:   public int GetModLevel(int index) => (int) this.modData[index >> 1] >> ((index & 1) << 2) & 3;\n  245  \n  246:   public short GetModPlane(int index) => (short) (((int) this.modData[index >> 1] >> ((index & 1) << 2) + 2 & 3) * 133 + 20020);\n  247  \n  248    public void SetModLevel(int index, int level)\n  ...\n  251      int num2 = ~(3 << num1);\n  252      int num3 = (level & 3) << num1;\n  253:     this.modData[index >> 1] &= (byte) num2;\n  254:     this.modData[index >> 1] |= (byte) num3;\n  255    }\n  256  \n  ...\n  264      int num2 = ~(3 << num1);\n  265      int num3 = (plane & 3) << num1;\n  266:     this.modData[index >> 1] &= (byte) num2;\n  267:     this.modData[index >> 1] |= (byte) num3;\n  268    }\n  269  \n  270    public bool AddModLevel(int index, int level)\n  271    {\n  272:     int num1 = (int) this.modData[index >> 1] >> ((index & 1) << 2) & 3;\n  273      level += num1;\n  274      if (level > 3)\n  ...\n  279      int num3 = ~(3 << num2);\n  280      int num4 = (level & 3) << num2;\n  281:     this.modData[index >> 1] &= (byte) num3;\n  282:     this.modData[index >> 1] |= (byte) num4;\n  283      return true;\n  284    }\n\n46 matches across 6 files\n\n\nSearching 3566 files for \"initmoddata\"\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetModelingManager.cs:\n  456                  highStopwatch.Begin();\n  457                  planetData.data = new PlanetRawData(planetData.precision);\n  458:                 planetData.modData = planetData.data.InitModData(planetData.modData);\n  459                  planetData.data.CalcVerts();\n  460                  planetData.aux = new PlanetAuxData(planetData);\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetRawData.cs:\n   62    }\n   63  \n   64:   public byte[] InitModData(byte[] refModData)\n   65    {\n   66      this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetModelingManager.cs:\n  456                  highStopwatch.Begin();\n  457                  planetData.data = new PlanetRawData(planetData.precision);\n  458:                 planetData.modData = planetData.data.InitModData(planetData.modData);\n  459                  planetData.data.CalcVerts();\n  460                  planetData.aux = new PlanetAuxData(planetData);\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetRawData.cs:\n   62    }\n   63  \n   64:   public byte[] InitModData(byte[] refModData)\n   65    {\n   66      this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n\n4 matches across 4 files\n\n\nSearching 3566 files for \"dataLength\"\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm.cs:\n  342      int stride = data.stride;\n  343      int num1 = stride / 2;\n  344:     int dataLength = data.dataLength;\n  345      ushort[] heightData = data.heightData;\n  346      float num2 = (float) ((double) _planet.radius * 100.0 - 20.0);\n  ...\n  353        int num3 = 0;\n  354        int num4 = 0;\n  355:       for (int index = 0; index < dataLength; ++index)\n  356        {\n  357          int num5 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm0.cs:\n   10    {\n   11      PlanetRawData data = this.planet.data;\n   12:     for (int index = 0; index < data.dataLength; ++index)\n   13      {\n   14        data.heightData[index] = (ushort) ((double) this.planet.radius * 100.0);\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm1.cs:\n   27      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   28      PlanetRawData data = this.planet.data;\n   29:     for (int index = 0; index < data.dataLength; ++index)\n   30      {\n   31        double num10 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   83      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   84      short[] vegeHps = PlanetModelingManager.vegeHps;\n   85:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   86      {\n   87        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm2.cs:\n   27      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   28      PlanetRawData data = this.planet.data;\n   29:     for (int index = 0; index < data.dataLength; ++index)\n   30      {\n   31        double num9 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   77      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   78      short[] vegeHps = PlanetModelingManager.vegeHps;\n   79:     for (int index = 0; index < data.dataLength; ++index)\n   80      {\n   81        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm3.cs:\n   21      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   22      PlanetRawData data = this.planet.data;\n   23:     for (int index = 0; index < data.dataLength; ++index)\n   24      {\n   25        double num4 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   83      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   84      short[] vegeHps = PlanetModelingManager.vegeHps;\n   85:     for (int index = 0; index < data.dataLength; ++index)\n   86      {\n   87        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm4.cs:\n   37      }\n   38      PlanetRawData data = this.planet.data;\n   39:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   40      {\n   41        double num4 = (double) data.vertices[index1].x * (double) this.planet.radius;\n   ..\n  106      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n  107      short[] vegeHps = PlanetModelingManager.vegeHps;\n  108:     for (int index = 0; index < data.dataLength; ++index)\n  109      {\n  110        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm5.cs:\n   18      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   19      PlanetRawData data = this.planet.data;\n   20:     for (int index = 0; index < data.dataLength; ++index)\n   21      {\n   22        double num1 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   91      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   92      short[] vegeHps = PlanetModelingManager.vegeHps;\n   93:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   94      {\n   95        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm6.cs:\n   18      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   19      PlanetRawData data = this.planet.data;\n   20:     for (int index = 0; index < data.dataLength; ++index)\n   21      {\n   22        double num1 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   93      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   94      short[] vegeHps = PlanetModelingManager.vegeHps;\n   95:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   96      {\n   97        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm7.cs:\n   33      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   34      PlanetRawData data = this.planet.data;\n   35:     for (int index = 0; index < data.dataLength; ++index)\n   36      {\n   37        double num10 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   89      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   90      short[] vegeHps = PlanetModelingManager.vegeHps;\n   91:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   92      {\n   93        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetFactory.cs:\n 2223      };\n 2224      int stride = this.planet.data.stride;\n 2225:     int dataLength = this.planet.data.dataLength;\n 2226      Vector3[] vertices = this.planet.data.vertices;\n 2227      ushort[] heightData = this.planet.data.heightData;\n ....\n 2234        {\n 2235          int num7 = num6 + index1 * stride;\n 2236:         if (num7 >= 0 && num7 < dataLength)\n 2237          {\n 2238            for (int index2 = -num3; index2 <= num3; ++index2)\n 2239            {\n 2240              int index3 = num7 + index2;\n 2241:             if ((long) (uint) index3 < (long) dataLength && (lift || (int) heightData[index3] > (int) num4))\n 2242              {\n 2243                Vector3 vector3_1;\n ....\n 2378      };\n 2379      int stride = data.stride;\n 2380:     int dataLength = data.dataLength;\n 2381      float num6 = 8f;\n 2382      int num7 = 0;\n ....\n 2387        {\n 2388          int num9 = num8 + index1 * stride;\n 2389:         if (num9 >= 0 && num9 < dataLength)\n 2390          {\n 2391            for (int index2 = -num5; index2 <= num5; ++index2)\n 2392            {\n 2393              int index3 = num9 + index2;\n 2394:             if ((long) (uint) index3 < (long) dataLength)\n 2395              {\n 2396                Vector3 vector3_1;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetRawData.cs:\n   20    public int[] indexMap;\n   21    public int indexMapPrecision;\n   22:   public int indexMapDataLength;\n   23    public int indexMapFaceStride;\n   24    public int indexMapCornerStride;\n   ..\n   46    {\n   47      this.precision = _precision;\n   48:     int dataLength = this.dataLength;\n   49:     this.heightData = new ushort[dataLength];\n   50:     this.vegeIds = new ushort[dataLength];\n   51:     this.biomoData = new byte[dataLength];\n   52:     this.temprData = new short[dataLength];\n   53:     this.vertices = new Vector3[dataLength];\n   54:     this.normals = new Vector3[dataLength];\n   55      this.indexMapPrecision = this.precision >> 2;\n   56      this.indexMapFaceStride = this.indexMapPrecision * this.indexMapPrecision;\n   57      this.indexMapCornerStride = this.indexMapFaceStride * 3;\n   58:     this.indexMapDataLength = this.indexMapCornerStride * 8;\n   59:     this.indexMap = new int[this.indexMapDataLength];\n   60      this.SetVegeCapacity(32);\n   61      this.SetVeinCapacity(32);\n   ..\n   64    public byte[] InitModData(byte[] refModData)\n   65    {\n   66:     this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n   67      return this.modData;\n   68    }\n   ..\n   80    }\n   81  \n   82:   public int dataLength => (this.precision + 1) * (this.precision + 1) * 4;\n   83  \n   84    public int stride => (this.precision + 1) * 2;\n   ..\n  100      else\n  101      {\n  102:       for (int index = 0; index < this.indexMapDataLength; ++index)\n  103          this.indexMap[index] = -1;\n  104        int num1 = (this.precision + 1) * 2;\n  105        int num2 = this.precision + 1;\n  106:       for (int index1 = 0; index1 < this.dataLength; ++index1)\n  107        {\n  108          int num3 = index1 % num1;\n  ...\n  183        }\n  184        int num11 = 0;\n  185:       for (int index = 1; index < this.indexMapDataLength; ++index)\n  186        {\n  187          if (this.indexMap[index] == -1)\n  ...\n  226        {\n  227          int index4 = index1 + index2 + index3 * stride;\n  228:         if ((long) (uint) index4 < (long) this.dataLength)\n  229          {\n  230            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n  ...\n  294        {\n  295          int index4 = index1 + index2 + index3 * stride;\n  296:         if ((long) (uint) index4 < (long) this.dataLength)\n  297            this.vegePool[(int) this.vegeIds[index4]].SetNull();\n  298        }\n  ...\n  314        {\n  315          int index4 = index1 + index2 + index3 * stride;\n  316:         if ((long) (uint) index4 < (long) this.dataLength)\n  317          {\n  318            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n  ...\n  347        {\n  348          int index4 = index1 + index2 + index3 * stride;\n  349:         if ((long) (uint) index4 < (long) this.dataLength)\n  350          {\n  351            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\TestPlanetLevel.cs:\n   51      };\n   52      int stride = data.stride;\n   53:     int dataLength = data.dataLength;\n   54      foreach (Vector3 vpos in vector3Array)\n   55      {\n   ..\n   58        {\n   59          int num6 = num5 + index1 * stride;\n   60:         if (num6 >= 0 && num6 < dataLength)\n   61          {\n   62            for (int index2 = -num4; index2 <= num4; ++index2)\n   63            {\n   64              int key = num6 + index2;\n   65:             if ((long) (uint) key < (long) dataLength)\n   66              {\n   67                Vector3 vector3_1;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\VertaBuffer.cs:\n   16    public int frameCount;\n   17    public int frameStride;\n   18:   public int dataLength;\n   19    public int memSize;\n   20    public float[] data;\n   ..\n   35      this.frameCount = _frameCount;\n   36      this.frameStride = this.vertexCount * this.vertexSize;\n   37:     this.dataLength = this.frameStride * this.frameCount;\n   38:     this.memSize = this.dataLength * 4;\n   39:     if (this.dataLength > 0)\n   40      {\n   41:       float[] numArray = new float[this.dataLength];\n   42        if (this.data != null && !flag)\n   43:         Array.Copy((Array) this.data, (Array) numArray, this.data.Length >= this.dataLength ? this.dataLength : this.data.Length);\n   44        this.data = numArray;\n   45      }\n   ..\n   52      if (this.data == null)\n   53        return;\n   54:     this.cbuffer = new ComputeBuffer(this.dataLength, 4, ComputeBufferType.Default);\n   55      this.cbuffer.SetData((Array) this.data);\n   56    }\n   ..\n   75      this.frameCount = 0;\n   76      this.frameStride = 0;\n   77:     this.dataLength = 0;\n   78      this.memSize = 0;\n   79    }\n   ..\n   88      this.frameCount = 0;\n   89      this.frameStride = 0;\n   90:     this.dataLength = 0;\n   91      this.memSize = 0;\n   92    }\n   ..\n  108      if (this.cbuffer != null || this.data == null)\n  109        return;\n  110:     this.cbuffer = new ComputeBuffer(this.dataLength, 4, ComputeBufferType.Default);\n  111      this.cbuffer.SetData((Array) this.data);\n  112    }\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm.cs:\n  342      int stride = data.stride;\n  343      int num1 = stride / 2;\n  344:     int dataLength = data.dataLength;\n  345      ushort[] heightData = data.heightData;\n  346      float num2 = (float) ((double) _planet.radius * 100.0 - 20.0);\n  ...\n  353        int num3 = 0;\n  354        int num4 = 0;\n  355:       for (int index = 0; index < dataLength; ++index)\n  356        {\n  357          int num5 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm0.cs:\n   10    {\n   11      PlanetRawData data = this.planet.data;\n   12:     for (int index = 0; index < data.dataLength; ++index)\n   13      {\n   14        data.heightData[index] = (ushort) ((double) this.planet.radius * 100.0);\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm1.cs:\n   27      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   28      PlanetRawData data = this.planet.data;\n   29:     for (int index = 0; index < data.dataLength; ++index)\n   30      {\n   31        double num10 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   83      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   84      short[] vegeHps = PlanetModelingManager.vegeHps;\n   85:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   86      {\n   87        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm2.cs:\n   27      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   28      PlanetRawData data = this.planet.data;\n   29:     for (int index = 0; index < data.dataLength; ++index)\n   30      {\n   31        double num9 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   77      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   78      short[] vegeHps = PlanetModelingManager.vegeHps;\n   79:     for (int index = 0; index < data.dataLength; ++index)\n   80      {\n   81        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm3.cs:\n   21      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   22      PlanetRawData data = this.planet.data;\n   23:     for (int index = 0; index < data.dataLength; ++index)\n   24      {\n   25        double num4 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   83      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   84      short[] vegeHps = PlanetModelingManager.vegeHps;\n   85:     for (int index = 0; index < data.dataLength; ++index)\n   86      {\n   87        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm4.cs:\n   37      }\n   38      PlanetRawData data = this.planet.data;\n   39:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   40      {\n   41        double num4 = (double) data.vertices[index1].x * (double) this.planet.radius;\n   ..\n  106      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n  107      short[] vegeHps = PlanetModelingManager.vegeHps;\n  108:     for (int index = 0; index < data.dataLength; ++index)\n  109      {\n  110        int num12 = index % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm5.cs:\n   18      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   19      PlanetRawData data = this.planet.data;\n   20:     for (int index = 0; index < data.dataLength; ++index)\n   21      {\n   22        double num1 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   91      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   92      short[] vegeHps = PlanetModelingManager.vegeHps;\n   93:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   94      {\n   95        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm6.cs:\n   18      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   19      PlanetRawData data = this.planet.data;\n   20:     for (int index = 0; index < data.dataLength; ++index)\n   21      {\n   22        double num1 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   93      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   94      short[] vegeHps = PlanetModelingManager.vegeHps;\n   95:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   96      {\n   97        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm7.cs:\n   33      SimplexNoise simplexNoise2 = new SimplexNoise(seed2);\n   34      PlanetRawData data = this.planet.data;\n   35:     for (int index = 0; index < data.dataLength; ++index)\n   36      {\n   37        double num10 = (double) data.vertices[index].x * (double) this.planet.radius;\n   ..\n   89      Vector4[] vegeScaleRanges = PlanetModelingManager.vegeScaleRanges;\n   90      short[] vegeHps = PlanetModelingManager.vegeHps;\n   91:     for (int index1 = 0; index1 < data.dataLength; ++index1)\n   92      {\n   93        int num12 = index1 % stride;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetFactory.cs:\n 2223      };\n 2224      int stride = this.planet.data.stride;\n 2225:     int dataLength = this.planet.data.dataLength;\n 2226      Vector3[] vertices = this.planet.data.vertices;\n 2227      ushort[] heightData = this.planet.data.heightData;\n ....\n 2234        {\n 2235          int num7 = num6 + index1 * stride;\n 2236:         if (num7 >= 0 && num7 < dataLength)\n 2237          {\n 2238            for (int index2 = -num3; index2 <= num3; ++index2)\n 2239            {\n 2240              int index3 = num7 + index2;\n 2241:             if ((long) (uint) index3 < (long) dataLength && (lift || (int) heightData[index3] > (int) num4))\n 2242              {\n 2243                Vector3 vector3_1;\n ....\n 2378      };\n 2379      int stride = data.stride;\n 2380:     int dataLength = data.dataLength;\n 2381      float num6 = 8f;\n 2382      int num7 = 0;\n ....\n 2387        {\n 2388          int num9 = num8 + index1 * stride;\n 2389:         if (num9 >= 0 && num9 < dataLength)\n 2390          {\n 2391            for (int index2 = -num5; index2 <= num5; ++index2)\n 2392            {\n 2393              int index3 = num9 + index2;\n 2394:             if ((long) (uint) index3 < (long) dataLength)\n 2395              {\n 2396                Vector3 vector3_1;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetRawData.cs:\n   20    public int[] indexMap;\n   21    public int indexMapPrecision;\n   22:   public int indexMapDataLength;\n   23    public int indexMapFaceStride;\n   24    public int indexMapCornerStride;\n   ..\n   46    {\n   47      this.precision = _precision;\n   48:     int dataLength = this.dataLength;\n   49:     this.heightData = new ushort[dataLength];\n   50:     this.vegeIds = new ushort[dataLength];\n   51:     this.biomoData = new byte[dataLength];\n   52:     this.temprData = new short[dataLength];\n   53:     this.vertices = new Vector3[dataLength];\n   54:     this.normals = new Vector3[dataLength];\n   55      this.indexMapPrecision = this.precision >> 2;\n   56      this.indexMapFaceStride = this.indexMapPrecision * this.indexMapPrecision;\n   57      this.indexMapCornerStride = this.indexMapFaceStride * 3;\n   58:     this.indexMapDataLength = this.indexMapCornerStride * 8;\n   59:     this.indexMap = new int[this.indexMapDataLength];\n   60      this.SetVegeCapacity(32);\n   61      this.SetVeinCapacity(32);\n   ..\n   64    public byte[] InitModData(byte[] refModData)\n   65    {\n   66:     this.modData = refModData == null ? new byte[this.dataLength / 2] : refModData;\n   67      return this.modData;\n   68    }\n   ..\n   80    }\n   81  \n   82:   public int dataLength => (this.precision + 1) * (this.precision + 1) * 4;\n   83  \n   84    public int stride => (this.precision + 1) * 2;\n   ..\n  100      else\n  101      {\n  102:       for (int index = 0; index < this.indexMapDataLength; ++index)\n  103          this.indexMap[index] = -1;\n  104        int num1 = (this.precision + 1) * 2;\n  105        int num2 = this.precision + 1;\n  106:       for (int index1 = 0; index1 < this.dataLength; ++index1)\n  107        {\n  108          int num3 = index1 % num1;\n  ...\n  183        }\n  184        int num11 = 0;\n  185:       for (int index = 1; index < this.indexMapDataLength; ++index)\n  186        {\n  187          if (this.indexMap[index] == -1)\n  ...\n  226        {\n  227          int index4 = index1 + index2 + index3 * stride;\n  228:         if ((long) (uint) index4 < (long) this.dataLength)\n  229          {\n  230            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n  ...\n  294        {\n  295          int index4 = index1 + index2 + index3 * stride;\n  296:         if ((long) (uint) index4 < (long) this.dataLength)\n  297            this.vegePool[(int) this.vegeIds[index4]].SetNull();\n  298        }\n  ...\n  314        {\n  315          int index4 = index1 + index2 + index3 * stride;\n  316:         if ((long) (uint) index4 < (long) this.dataLength)\n  317          {\n  318            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n  ...\n  347        {\n  348          int index4 = index1 + index2 + index3 * stride;\n  349:         if ((long) (uint) index4 < (long) this.dataLength)\n  350          {\n  351            float sqrMagnitude = (this.vertices[index4] - vpos).sqrMagnitude;\n\nC:\\dspSourceold\\Assembly-CSharp\\TestPlanetLevel.cs:\n   51      };\n   52      int stride = data.stride;\n   53:     int dataLength = data.dataLength;\n   54      foreach (Vector3 vpos in vector3Array)\n   55      {\n   ..\n   58        {\n   59          int num6 = num5 + index1 * stride;\n   60:         if (num6 >= 0 && num6 < dataLength)\n   61          {\n   62            for (int index2 = -num4; index2 <= num4; ++index2)\n   63            {\n   64              int key = num6 + index2;\n   65:             if ((long) (uint) key < (long) dataLength)\n   66              {\n   67                Vector3 vector3_1;\n\nC:\\dspSourceold\\Assembly-CSharp\\VertaBuffer.cs:\n   16    public int frameCount;\n   17    public int frameStride;\n   18:   public int dataLength;\n   19    public int memSize;\n   20    public float[] data;\n   ..\n   35      this.frameCount = _frameCount;\n   36      this.frameStride = this.vertexCount * this.vertexSize;\n   37:     this.dataLength = this.frameStride * this.frameCount;\n   38:     this.memSize = this.dataLength * 4;\n   39:     if (this.dataLength > 0)\n   40      {\n   41:       float[] numArray = new float[this.dataLength];\n   42        if (this.data != null && !flag)\n   43:         Array.Copy((Array) this.data, (Array) numArray, this.data.Length >= this.dataLength ? this.dataLength : this.data.Length);\n   44        this.data = numArray;\n   45      }\n   ..\n   52      if (this.data == null)\n   53        return;\n   54:     this.cbuffer = new ComputeBuffer(this.dataLength, 4, ComputeBufferType.Default);\n   55      this.cbuffer.SetData((Array) this.data);\n   56    }\n   ..\n   75      this.frameCount = 0;\n   76      this.frameStride = 0;\n   77:     this.dataLength = 0;\n   78      this.memSize = 0;\n   79    }\n   ..\n   88      this.frameCount = 0;\n   89      this.frameStride = 0;\n   90:     this.dataLength = 0;\n   91      this.memSize = 0;\n   92    }\n   ..\n  108      if (this.cbuffer != null || this.data == null)\n  109        return;\n  110:     this.cbuffer = new ComputeBuffer(this.dataLength, 4, ComputeBufferType.Default);\n  111      this.cbuffer.SetData((Array) this.data);\n  112    }\n\n122 matches across 26 files\n\n\nSearching 3566 files for \"stride\"\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\DysonSwarm.cs:\n  931        this.sailFarMaterial.SetFloat(\"_DistScalePoint\", 1f / Mathf.Tan((float) ((double) fieldOfView * (Math.PI / 180.0) * 0.5)) * num2);\n  932      }\n  933:     this.sailFarMaterial.SetInt(\"_Stride\", 65536);\n  934      this.sailFarMaterial.SetBuffer(\"_SwarmBuffer\", this.swarmBuffer);\n  935      this.sailFarMaterial.SetBuffer(\"_SwarmInfoBuffer\", this.swarmInfoBuffer);\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm.cs:\n  340    {\n  341      PlanetRawData data = _planet.data;\n  342:     int stride = data.stride;\n  343:     int num1 = stride / 2;\n  344      int dataLength = data.dataLength;\n  345      ushort[] heightData = data.heightData;\n  ...\n  355        for (int index = 0; index < dataLength; ++index)\n  356        {\n  357:         int num5 = index % stride;\n  358:         int num6 = index / stride;\n  359          if (num5 > num1)\n  360            --num5;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm1.cs:\n   76      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   77      PlanetRawData data = this.planet.data;\n   78:     int stride = data.stride;\n   79:     int num10 = stride / 2;\n   80      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   81      VegeData vege = new VegeData();\n   ..\n   85      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   86      {\n   87:       int num12 = index1 % stride;\n   88:       int num13 = index1 / stride;\n   89        if (num12 > num10)\n   90          --num12;\n   ..\n   98          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n   99          float a = (float) data.heightData[index1] * 0.01f;\n  100:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  101:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  102:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  103:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  104          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  105          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  106:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  107:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  108          float num21 = (float) data.biomoData[index1] * 0.01f;\n  109          float num22 = this.planet.radius + 0.15f;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm2.cs:\n   70      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n   71      PlanetRawData data = this.planet.data;\n   72:     int stride = data.stride;\n   73:     int num10 = stride / 2;\n   74      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   75      VegeData vege = new VegeData();\n   ..\n   79      for (int index = 0; index < data.dataLength; ++index)\n   80      {\n   81:       int num12 = index % stride;\n   82:       int num13 = index / stride;\n   83        if (num12 > num10)\n   84          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm3.cs:\n   76      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n   77      PlanetRawData data = this.planet.data;\n   78:     int stride = data.stride;\n   79:     int num10 = stride / 2;\n   80      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   81      VegeData vege = new VegeData();\n   ..\n   85      for (int index = 0; index < data.dataLength; ++index)\n   86      {\n   87:       int num12 = index % stride;\n   88:       int num13 = index / stride;\n   89        if (num12 > num10)\n   90          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm4.cs:\n   99      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n  100      PlanetRawData data = this.planet.data;\n  101:     int stride = data.stride;\n  102:     int num10 = stride / 2;\n  103      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n  104      VegeData vege = new VegeData();\n  ...\n  108      for (int index = 0; index < data.dataLength; ++index)\n  109      {\n  110:       int num12 = index % stride;\n  111:       int num13 = index / stride;\n  112        if (num12 > num10)\n  113          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm5.cs:\n   84      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   85      PlanetRawData data = this.planet.data;\n   86:     int stride = data.stride;\n   87:     int num10 = stride / 2;\n   88      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   89      VegeData vege = new VegeData();\n   ..\n   93      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   94      {\n   95:       int num12 = index1 % stride;\n   96:       int num13 = index1 / stride;\n   97        if (num12 > num10)\n   98          --num12;\n   ..\n  106          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  107          float a = (float) data.heightData[index1] * 0.01f;\n  108:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  109:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  110:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  111:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  112          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  113          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  114:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  115:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  116          float num21 = (float) data.biomoData[index1] * 0.01f;\n  117          if ((double) a >= (double) this.planet.radius && (double) b1 >= (double) this.planet.radius && ((double) b2 >= (double) this.planet.radius && (double) b3 >= (double) this.planet.radius) && ((double) b4 >= (double) this.planet.radius && (double) num17 >= (double) this.planet.radius && ((double) num18 >= (double) this.planet.radius && (double) num19 >= (double) this.planet.radius)) && (double) num20 >= (double) this.planet.radius)\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm6.cs:\n   86      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   87      PlanetRawData data = this.planet.data;\n   88:     int stride = data.stride;\n   89:     int num10 = stride / 2;\n   90      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   91      VegeData vege = new VegeData();\n   ..\n   95      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   96      {\n   97:       int num12 = index1 % stride;\n   98:       int num13 = index1 / stride;\n   99        if (num12 > num10)\n  100          --num12;\n  ...\n  108          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  109          float a = (float) data.heightData[index1] * 0.01f;\n  110:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  111:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  112:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  113:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  114          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  115          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  116:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  117:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  118          float num21 = (float) data.biomoData[index1] * 0.01f;\n  119          float num22 = this.planet.radius + 0.2f;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetAlgorithm7.cs:\n   82      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   83      PlanetRawData data = this.planet.data;\n   84:     int stride = data.stride;\n   85:     int num10 = stride / 2;\n   86      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   87      VegeData vege = new VegeData();\n   ..\n   91      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   92      {\n   93:       int num12 = index1 % stride;\n   94:       int num13 = index1 / stride;\n   95        if (num12 > num10)\n   96          --num12;\n   ..\n  104          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  105          float a = (float) data.heightData[index1] * 0.01f;\n  106:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  107:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  108:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  109:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  110          float num17 = (float) data.biomoData[index1] * 0.01f;\n  111          bool flag = true;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetData.cs:\n  620        return;\n  621      int num1 = this.precision / this.segment;\n  622:     int num2 = index % this.data.stride;\n  623:     int num3 = index / this.data.stride;\n  624:     int num4 = (num2 >= this.data.substride ? 1 : 0) + (num3 >= this.data.substride ? 2 : 0);\n  625:     int num5 = num2 % this.data.substride;\n  626:     int num6 = num3 % this.data.substride;\n  627      int num7 = (num5 - 1) / num1;\n  628      int num8 = (num6 - 1) / num1;\n  ...\n  666      int num5 = num3 / 2;\n  667      int num6 = dirtyIdx % num2;\n  668:     int num7 = num6 % this.segment * num1 + num4 * this.data.substride;\n  669:     int num8 = num6 / this.segment * num1 + num5 * this.data.substride;\n  670:     int stride = this.data.stride;\n  671      float num9 = (float) ((double) this.radius * (double) this.scale + 0.200000002980232);\n  672      Mesh mesh = this.meshes[dirtyIdx];\n  ...\n  678        for (int index3 = num7; index3 <= num7 + num1; ++index3)\n  679        {\n  680:         int index4 = index3 + index2 * stride;\n  681          float num10 = (float) this.data.heightData[index4] * 0.01f * this.scale;\n  682          float num11 = (float) this.data.GetModLevel(index4) * 0.3333333f;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetFactory.cs:\n 2222        pos + quaternion2 * (new Vector3(-1f, 0.0f, 1f) * areaRadius)\n 2223      };\n 2224:     int stride = this.planet.data.stride;\n 2225      int dataLength = this.planet.data.dataLength;\n 2226      Vector3[] vertices = this.planet.data.vertices;\n ....\n 2233        for (int index1 = -num3; index1 <= num3; ++index1)\n 2234        {\n 2235:         int num7 = num6 + index1 * stride;\n 2236          if (num7 >= 0 && num7 < dataLength)\n 2237          {\n ....\n 2377        center + quaternion * (new Vector3(-1f, 0.0f, 1f) * num2)\n 2378      };\n 2379:     int stride = data.stride;\n 2380      int dataLength = data.dataLength;\n 2381      float num6 = 8f;\n ....\n 2386        for (int index1 = -num5; index1 <= num5; ++index1)\n 2387        {\n 2388:         int num9 = num8 + index1 * stride;\n 2389          if (num9 >= 0 && num9 < dataLength)\n 2390          {\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetModelingManager.cs:\n  701          float scale = planet.scale;\n  702          float num5 = (float) ((double) planet.radius * (double) scale + 0.200000002980232);\n  703:         int stride = data.stride;\n  704          int num6 = 0;\n  705          int num7 = !GameMain.isLoading ? 2 : 3;\n  ...\n  735                      int num11 = num9 + index5;\n  736                      int num12 = num10 + index4;\n  737:                     int index6 = num11 + num12 * stride;\n  738                      int num13 = index6;\n  739                      if (index4 == 0)\n  ...\n  744                        int num17 = precision;\n  745                        int num18 = precision - index5;\n  746:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  747                      }\n  748                      else if (index5 == 0)\n  ...\n  753                        int num17 = precision - index4;\n  754                        int num18 = precision;\n  755:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  756                      }\n  757                      if (index4 == precision)\n  ...\n  762                        int num17 = 0;\n  763                        int num18 = precision - index5;\n  764:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  765                      }\n  766                      else if (index5 == precision)\n  ...\n  771                        int num17 = precision - index4;\n  772                        int num18 = 0;\n  773:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  774                      }\n  775                      float num19 = (float) data.heightData[index6] * 0.01f * scale;\n  ...\n  786                        vector3_2 = Vector3.right;\n  787                      PlanetModelingManager.tmpTgnts.Add(new Vector4(vector3_2.x, vector3_2.y, vector3_2.z, 1f));\n  788:                     PlanetModelingManager.tmpUvs.Add(new Vector2(((float) num11 + 0.5f) / (float) stride, ((float) num12 + 0.5f) / (float) stride));\n  789                      PlanetModelingManager.tmpUv2s.Add(new Vector4((float) data.biomoData[index6] * 0.01f, (float) data.temprData[index6] * 0.01f, (float) index6 + 0.3f, (float) num13 + 0.3f));\n  790                    }\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\PlanetRawData.cs:\n   21    public int indexMapPrecision;\n   22    public int indexMapDataLength;\n   23:   public int indexMapFaceStride;\n   24:   public int indexMapCornerStride;\n   25    private static Vector3[] verts200;\n   26    private static Vector3[] verts80;\n   ..\n   54      this.normals = new Vector3[dataLength];\n   55      this.indexMapPrecision = this.precision >> 2;\n   56:     this.indexMapFaceStride = this.indexMapPrecision * this.indexMapPrecision;\n   57:     this.indexMapCornerStride = this.indexMapFaceStride * 3;\n   58:     this.indexMapDataLength = this.indexMapCornerStride * 8;\n   59      this.indexMap = new int[this.indexMapDataLength];\n   60      this.SetVegeCapacity(32);\n   ..\n   82    public int dataLength => (this.precision + 1) * (this.precision + 1) * 4;\n   83  \n   84:   public int stride => (this.precision + 1) * 2;\n   85  \n   86:   public int substride => this.precision + 1;\n   87  \n   88    public void CalcVerts()\n   ..\n  218      float num1 = 3.141593f / (float) (this.precision * 2) * 0.25f;\n  219      float num2 = num1 * num1;\n  220:     int stride = this.stride;\n  221      float num3 = 10f;\n  222      int num4 = index1;\n  ...\n  225        for (int index3 = -1; index3 <= 3; ++index3)\n  226        {\n  227:         int index4 = index1 + index2 + index3 * stride;\n  228          if ((long) (uint) index4 < (long) this.dataLength)\n  229          {\n  ...\n  288      vpos.Normalize();\n  289      int index1 = this.indexMap[this.PositionHash(vpos)];\n  290:     int stride = this.stride;\n  291      for (int index2 = -3; index2 <= 3; ++index2)\n  292      {\n  293        for (int index3 = -3; index3 <= 3; ++index3)\n  294        {\n  295:         int index4 = index1 + index2 + index3 * stride;\n  296          if ((long) (uint) index4 < (long) this.dataLength)\n  297            this.vegePool[(int) this.vegeIds[index4]].SetNull();\n  ...\n  308      float num3 = 0.0f;\n  309      float num4 = 0.0f;\n  310:     int stride = this.stride;\n  311      for (int index2 = -1; index2 <= 3; ++index2)\n  312      {\n  313        for (int index3 = -1; index3 <= 3; ++index3)\n  314        {\n  315:         int index4 = index1 + index2 + index3 * stride;\n  316          if ((long) (uint) index4 < (long) this.dataLength)\n  317          {\n  ...\n  341      float num3 = 0.0f;\n  342      float num4 = 0.0f;\n  343:     int stride = this.stride;\n  344      for (int index2 = -1; index2 <= 3; ++index2)\n  345      {\n  346        for (int index3 = -1; index3 <= 3; ++index3)\n  347        {\n  348:         int index4 = index1 + index2 + index3 * stride;\n  349          if ((long) (uint) index4 < (long) this.dataLength)\n  350          {\n  ...\n  457        num3 = this.trans(v.y / v.z, this.indexMapPrecision);\n  458      }\n  459:     return num2 + num3 * this.indexMapPrecision + num1 * this.indexMapFaceStride + corner * this.indexMapCornerStride;\n  460    }\n  461  }\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\rail\\RAIL_API_PINVOKE.cs:\n 6590      public static extern uint RailImageDataDescriptor_image_height_get(IntPtr jarg1);\n 6591  \n 6592:     [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_stride_in_bytes_set\")]\n 6593:     public static extern void RailImageDataDescriptor_stride_in_bytes_set(IntPtr jarg1, uint jarg2);\n 6594  \n 6595:     [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_stride_in_bytes_get\")]\n 6596:     public static extern uint RailImageDataDescriptor_stride_in_bytes_get(IntPtr jarg1);\n 6597  \n 6598      [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_bits_per_pixel_set\")]\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\rail\\RailConverter.cs:\n 2134        ret.pixel_format = (EnumRailImagePixelFormat) RAIL_API_PINVOKE.RailImageDataDescriptor_pixel_format_get(ptr);\n 2135        ret.image_height = RAIL_API_PINVOKE.RailImageDataDescriptor_image_height_get(ptr);\n 2136:       ret.stride_in_bytes = RAIL_API_PINVOKE.RailImageDataDescriptor_stride_in_bytes_get(ptr);\n 2137        ret.image_width = RAIL_API_PINVOKE.RailImageDataDescriptor_image_width_get(ptr);\n 2138        ret.bits_per_pixel = RAIL_API_PINVOKE.RailImageDataDescriptor_bits_per_pixel_get(ptr);\n ....\n 2143        RAIL_API_PINVOKE.RailImageDataDescriptor_pixel_format_set(ptr, (int) data.pixel_format);\n 2144        RAIL_API_PINVOKE.RailImageDataDescriptor_image_height_set(ptr, data.image_height);\n 2145:       RAIL_API_PINVOKE.RailImageDataDescriptor_stride_in_bytes_set(ptr, data.stride_in_bytes);\n 2146        RAIL_API_PINVOKE.RailImageDataDescriptor_image_width_set(ptr, data.image_width);\n 2147        RAIL_API_PINVOKE.RailImageDataDescriptor_bits_per_pixel_set(ptr, data.bits_per_pixel);\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\rail\\RailImageDataDescriptor.cs:\n   11      public EnumRailImagePixelFormat pixel_format;\n   12      public uint image_height;\n   13:     public uint stride_in_bytes;\n   14      public uint image_width;\n   15      public uint bits_per_pixel;\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\TestPlanetLevel.cs:\n   50        point + quaternion2 * (new Vector3(-1f, 0.0f, 1f) * num1)\n   51      };\n   52:     int stride = data.stride;\n   53      int dataLength = data.dataLength;\n   54      foreach (Vector3 vpos in vector3Array)\n   ..\n   57        for (int index1 = -num4; index1 <= num4; ++index1)\n   58        {\n   59:         int num6 = num5 + index1 * stride;\n   60          if (num6 >= 0 && num6 < dataLength)\n   61          {\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\VertaBuffer.cs:\n   15    public int vertexCount;\n   16    public int frameCount;\n   17:   public int frameStride;\n   18    public int dataLength;\n   19    public int memSize;\n   ..\n   34      this.vertexCount = _vertexCount;\n   35      this.frameCount = _frameCount;\n   36:     this.frameStride = this.vertexCount * this.vertexSize;\n   37:     this.dataLength = this.frameStride * this.frameCount;\n   38      this.memSize = this.dataLength * 4;\n   39      if (this.dataLength > 0)\n   ..\n   74      this.vertexCount = 0;\n   75      this.frameCount = 0;\n   76:     this.frameStride = 0;\n   77      this.dataLength = 0;\n   78      this.memSize = 0;\n   ..\n   87      this.vertexCount = 0;\n   88      this.frameCount = 0;\n   89:     this.frameStride = 0;\n   90      this.dataLength = 0;\n   91      this.memSize = 0;\n\nC:\\dspSourceold\\Assembly-CSharp\\DysonSwarm.cs:\n  931        this.sailFarMaterial.SetFloat(\"_DistScalePoint\", 1f / Mathf.Tan((float) ((double) fieldOfView * (Math.PI / 180.0) * 0.5)) * num2);\n  932      }\n  933:     this.sailFarMaterial.SetInt(\"_Stride\", 65536);\n  934      this.sailFarMaterial.SetBuffer(\"_SwarmBuffer\", this.swarmBuffer);\n  935      this.sailFarMaterial.SetBuffer(\"_SwarmInfoBuffer\", this.swarmInfoBuffer);\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm.cs:\n  340    {\n  341      PlanetRawData data = _planet.data;\n  342:     int stride = data.stride;\n  343:     int num1 = stride / 2;\n  344      int dataLength = data.dataLength;\n  345      ushort[] heightData = data.heightData;\n  ...\n  355        for (int index = 0; index < dataLength; ++index)\n  356        {\n  357:         int num5 = index % stride;\n  358:         int num6 = index / stride;\n  359          if (num5 > num1)\n  360            --num5;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm1.cs:\n   76      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   77      PlanetRawData data = this.planet.data;\n   78:     int stride = data.stride;\n   79:     int num10 = stride / 2;\n   80      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   81      VegeData vege = new VegeData();\n   ..\n   85      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   86      {\n   87:       int num12 = index1 % stride;\n   88:       int num13 = index1 / stride;\n   89        if (num12 > num10)\n   90          --num12;\n   ..\n   98          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n   99          float a = (float) data.heightData[index1] * 0.01f;\n  100:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  101:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  102:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  103:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  104          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  105          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  106:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  107:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  108          float num21 = (float) data.biomoData[index1] * 0.01f;\n  109          float num22 = this.planet.radius + 0.15f;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm2.cs:\n   70      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n   71      PlanetRawData data = this.planet.data;\n   72:     int stride = data.stride;\n   73:     int num10 = stride / 2;\n   74      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   75      VegeData vege = new VegeData();\n   ..\n   79      for (int index = 0; index < data.dataLength; ++index)\n   80      {\n   81:       int num12 = index % stride;\n   82:       int num13 = index / stride;\n   83        if (num12 > num10)\n   84          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm3.cs:\n   76      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n   77      PlanetRawData data = this.planet.data;\n   78:     int stride = data.stride;\n   79:     int num10 = stride / 2;\n   80      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   81      VegeData vege = new VegeData();\n   ..\n   85      for (int index = 0; index < data.dataLength; ++index)\n   86      {\n   87:       int num12 = index % stride;\n   88:       int num13 = index / stride;\n   89        if (num12 > num10)\n   90          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm4.cs:\n   99      SimplexNoise simplexNoise = new SimplexNoise(random2.Next());\n  100      PlanetRawData data = this.planet.data;\n  101:     int stride = data.stride;\n  102:     int num10 = stride / 2;\n  103      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n  104      VegeData vege = new VegeData();\n  ...\n  108      for (int index = 0; index < data.dataLength; ++index)\n  109      {\n  110:       int num12 = index % stride;\n  111:       int num13 = index / stride;\n  112        if (num12 > num10)\n  113          --num12;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm5.cs:\n   84      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   85      PlanetRawData data = this.planet.data;\n   86:     int stride = data.stride;\n   87:     int num10 = stride / 2;\n   88      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   89      VegeData vege = new VegeData();\n   ..\n   93      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   94      {\n   95:       int num12 = index1 % stride;\n   96:       int num13 = index1 / stride;\n   97        if (num12 > num10)\n   98          --num12;\n   ..\n  106          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  107          float a = (float) data.heightData[index1] * 0.01f;\n  108:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  109:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  110:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  111:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  112          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  113          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  114:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  115:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  116          float num21 = (float) data.biomoData[index1] * 0.01f;\n  117          if ((double) a >= (double) this.planet.radius && (double) b1 >= (double) this.planet.radius && ((double) b2 >= (double) this.planet.radius && (double) b3 >= (double) this.planet.radius) && ((double) b4 >= (double) this.planet.radius && (double) num17 >= (double) this.planet.radius && ((double) num18 >= (double) this.planet.radius && (double) num19 >= (double) this.planet.radius)) && (double) num20 >= (double) this.planet.radius)\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm6.cs:\n   86      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   87      PlanetRawData data = this.planet.data;\n   88:     int stride = data.stride;\n   89:     int num10 = stride / 2;\n   90      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   91      VegeData vege = new VegeData();\n   ..\n   95      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   96      {\n   97:       int num12 = index1 % stride;\n   98:       int num13 = index1 / stride;\n   99        if (num12 > num10)\n  100          --num12;\n  ...\n  108          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  109          float a = (float) data.heightData[index1] * 0.01f;\n  110:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  111:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  112:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  113:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  114          float num17 = (float) data.heightData[index1 + 1] * 0.01f;\n  115          float num18 = (float) data.heightData[index1 - 1] * 0.01f;\n  116:         float num19 = (float) data.heightData[index1 + stride] * 0.01f;\n  117:         float num20 = (float) data.heightData[index1 - stride] * 0.01f;\n  118          float num21 = (float) data.biomoData[index1] * 0.01f;\n  119          float num22 = this.planet.radius + 0.2f;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetAlgorithm7.cs:\n   82      SimplexNoise simplexNoise2 = new SimplexNoise(random2.Next());\n   83      PlanetRawData data = this.planet.data;\n   84:     int stride = data.stride;\n   85:     int num10 = stride / 2;\n   86      float num11 = (float) ((double) this.planet.radius * 3.1415901184082 * 2.0 / ((double) data.precision * 4.0));\n   87      VegeData vege = new VegeData();\n   ..\n   91      for (int index1 = 0; index1 < data.dataLength; ++index1)\n   92      {\n   93:       int num12 = index1 % stride;\n   94:       int num13 = index1 / stride;\n   95        if (num12 > num10)\n   96          --num12;\n   ..\n  104          double num16 = (double) data.vertices[index1].z * (double) this.planet.radius;\n  105          float a = (float) data.heightData[index1] * 0.01f;\n  106:         float b1 = (float) data.heightData[index1 + 1 + stride] * 0.01f;\n  107:         float b2 = (float) data.heightData[index1 - 1 + stride] * 0.01f;\n  108:         float b3 = (float) data.heightData[index1 + 1 - stride] * 0.01f;\n  109:         float b4 = (float) data.heightData[index1 - 1 - stride] * 0.01f;\n  110          float num17 = (float) data.biomoData[index1] * 0.01f;\n  111          bool flag = true;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetData.cs:\n  620        return;\n  621      int num1 = this.precision / this.segment;\n  622:     int num2 = index % this.data.stride;\n  623:     int num3 = index / this.data.stride;\n  624:     int num4 = (num2 >= this.data.substride ? 1 : 0) + (num3 >= this.data.substride ? 2 : 0);\n  625:     int num5 = num2 % this.data.substride;\n  626:     int num6 = num3 % this.data.substride;\n  627      int num7 = (num5 - 1) / num1;\n  628      int num8 = (num6 - 1) / num1;\n  ...\n  666      int num5 = num3 / 2;\n  667      int num6 = dirtyIdx % num2;\n  668:     int num7 = num6 % this.segment * num1 + num4 * this.data.substride;\n  669:     int num8 = num6 / this.segment * num1 + num5 * this.data.substride;\n  670:     int stride = this.data.stride;\n  671      float num9 = (float) ((double) this.radius * (double) this.scale + 0.200000002980232);\n  672      Mesh mesh = this.meshes[dirtyIdx];\n  ...\n  678        for (int index3 = num7; index3 <= num7 + num1; ++index3)\n  679        {\n  680:         int index4 = index3 + index2 * stride;\n  681          float num10 = (float) this.data.heightData[index4] * 0.01f * this.scale;\n  682          float num11 = (float) this.data.GetModLevel(index4) * 0.3333333f;\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetFactory.cs:\n 2222        pos + quaternion2 * (new Vector3(-1f, 0.0f, 1f) * areaRadius)\n 2223      };\n 2224:     int stride = this.planet.data.stride;\n 2225      int dataLength = this.planet.data.dataLength;\n 2226      Vector3[] vertices = this.planet.data.vertices;\n ....\n 2233        for (int index1 = -num3; index1 <= num3; ++index1)\n 2234        {\n 2235:         int num7 = num6 + index1 * stride;\n 2236          if (num7 >= 0 && num7 < dataLength)\n 2237          {\n ....\n 2377        center + quaternion * (new Vector3(-1f, 0.0f, 1f) * num2)\n 2378      };\n 2379:     int stride = data.stride;\n 2380      int dataLength = data.dataLength;\n 2381      float num6 = 8f;\n ....\n 2386        for (int index1 = -num5; index1 <= num5; ++index1)\n 2387        {\n 2388:         int num9 = num8 + index1 * stride;\n 2389          if (num9 >= 0 && num9 < dataLength)\n 2390          {\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetModelingManager.cs:\n  701          float scale = planet.scale;\n  702          float num5 = (float) ((double) planet.radius * (double) scale + 0.200000002980232);\n  703:         int stride = data.stride;\n  704          int num6 = 0;\n  705          int num7 = !GameMain.isLoading ? 2 : 3;\n  ...\n  735                      int num11 = num9 + index5;\n  736                      int num12 = num10 + index4;\n  737:                     int index6 = num11 + num12 * stride;\n  738                      int num13 = index6;\n  739                      if (index4 == 0)\n  ...\n  744                        int num17 = precision;\n  745                        int num18 = precision - index5;\n  746:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  747                      }\n  748                      else if (index5 == 0)\n  ...\n  753                        int num17 = precision - index4;\n  754                        int num18 = precision;\n  755:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  756                      }\n  757                      if (index4 == precision)\n  ...\n  762                        int num17 = 0;\n  763                        int num18 = precision - index5;\n  764:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  765                      }\n  766                      else if (index5 == precision)\n  ...\n  771                        int num17 = precision - index4;\n  772                        int num18 = 0;\n  773:                       num13 = num15 + num17 + (num16 + num18) * stride;\n  774                      }\n  775                      float num19 = (float) data.heightData[index6] * 0.01f * scale;\n  ...\n  786                        vector3_2 = Vector3.right;\n  787                      PlanetModelingManager.tmpTgnts.Add(new Vector4(vector3_2.x, vector3_2.y, vector3_2.z, 1f));\n  788:                     PlanetModelingManager.tmpUvs.Add(new Vector2(((float) num11 + 0.5f) / (float) stride, ((float) num12 + 0.5f) / (float) stride));\n  789                      PlanetModelingManager.tmpUv2s.Add(new Vector4((float) data.biomoData[index6] * 0.01f, (float) data.temprData[index6] * 0.01f, (float) index6 + 0.3f, (float) num13 + 0.3f));\n  790                    }\n\nC:\\dspSourceold\\Assembly-CSharp\\PlanetRawData.cs:\n   21    public int indexMapPrecision;\n   22    public int indexMapDataLength;\n   23:   public int indexMapFaceStride;\n   24:   public int indexMapCornerStride;\n   25    private static Vector3[] verts200;\n   26    private static Vector3[] verts80;\n   ..\n   54      this.normals = new Vector3[dataLength];\n   55      this.indexMapPrecision = this.precision >> 2;\n   56:     this.indexMapFaceStride = this.indexMapPrecision * this.indexMapPrecision;\n   57:     this.indexMapCornerStride = this.indexMapFaceStride * 3;\n   58:     this.indexMapDataLength = this.indexMapCornerStride * 8;\n   59      this.indexMap = new int[this.indexMapDataLength];\n   60      this.SetVegeCapacity(32);\n   ..\n   82    public int dataLength => (this.precision + 1) * (this.precision + 1) * 4;\n   83  \n   84:   public int stride => (this.precision + 1) * 2;\n   85  \n   86:   public int substride => this.precision + 1;\n   87  \n   88    public void CalcVerts()\n   ..\n  218      float num1 = 3.141593f / (float) (this.precision * 2) * 0.25f;\n  219      float num2 = num1 * num1;\n  220:     int stride = this.stride;\n  221      float num3 = 10f;\n  222      int num4 = index1;\n  ...\n  225        for (int index3 = -1; index3 <= 3; ++index3)\n  226        {\n  227:         int index4 = index1 + index2 + index3 * stride;\n  228          if ((long) (uint) index4 < (long) this.dataLength)\n  229          {\n  ...\n  288      vpos.Normalize();\n  289      int index1 = this.indexMap[this.PositionHash(vpos)];\n  290:     int stride = this.stride;\n  291      for (int index2 = -3; index2 <= 3; ++index2)\n  292      {\n  293        for (int index3 = -3; index3 <= 3; ++index3)\n  294        {\n  295:         int index4 = index1 + index2 + index3 * stride;\n  296          if ((long) (uint) index4 < (long) this.dataLength)\n  297            this.vegePool[(int) this.vegeIds[index4]].SetNull();\n  ...\n  308      float num3 = 0.0f;\n  309      float num4 = 0.0f;\n  310:     int stride = this.stride;\n  311      for (int index2 = -1; index2 <= 3; ++index2)\n  312      {\n  313        for (int index3 = -1; index3 <= 3; ++index3)\n  314        {\n  315:         int index4 = index1 + index2 + index3 * stride;\n  316          if ((long) (uint) index4 < (long) this.dataLength)\n  317          {\n  ...\n  341      float num3 = 0.0f;\n  342      float num4 = 0.0f;\n  343:     int stride = this.stride;\n  344      for (int index2 = -1; index2 <= 3; ++index2)\n  345      {\n  346        for (int index3 = -1; index3 <= 3; ++index3)\n  347        {\n  348:         int index4 = index1 + index2 + index3 * stride;\n  349          if ((long) (uint) index4 < (long) this.dataLength)\n  350          {\n  ...\n  457        num3 = this.trans(v.y / v.z, this.indexMapPrecision);\n  458      }\n  459:     return num2 + num3 * this.indexMapPrecision + num1 * this.indexMapFaceStride + corner * this.indexMapCornerStride;\n  460    }\n  461  }\n\nC:\\dspSourceold\\Assembly-CSharp\\rail\\RAIL_API_PINVOKE.cs:\n 6590      public static extern uint RailImageDataDescriptor_image_height_get(IntPtr jarg1);\n 6591  \n 6592:     [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_stride_in_bytes_set\")]\n 6593:     public static extern void RailImageDataDescriptor_stride_in_bytes_set(IntPtr jarg1, uint jarg2);\n 6594  \n 6595:     [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_stride_in_bytes_get\")]\n 6596:     public static extern uint RailImageDataDescriptor_stride_in_bytes_get(IntPtr jarg1);\n 6597  \n 6598      [DllImport(\"rail_api64\", EntryPoint = \"CSharp_RailImageDataDescriptor_bits_per_pixel_set\")]\n\nC:\\dspSourceold\\Assembly-CSharp\\rail\\RailConverter.cs:\n 2134        ret.pixel_format = (EnumRailImagePixelFormat) RAIL_API_PINVOKE.RailImageDataDescriptor_pixel_format_get(ptr);\n 2135        ret.image_height = RAIL_API_PINVOKE.RailImageDataDescriptor_image_height_get(ptr);\n 2136:       ret.stride_in_bytes = RAIL_API_PINVOKE.RailImageDataDescriptor_stride_in_bytes_get(ptr);\n 2137        ret.image_width = RAIL_API_PINVOKE.RailImageDataDescriptor_image_width_get(ptr);\n 2138        ret.bits_per_pixel = RAIL_API_PINVOKE.RailImageDataDescriptor_bits_per_pixel_get(ptr);\n ....\n 2143        RAIL_API_PINVOKE.RailImageDataDescriptor_pixel_format_set(ptr, (int) data.pixel_format);\n 2144        RAIL_API_PINVOKE.RailImageDataDescriptor_image_height_set(ptr, data.image_height);\n 2145:       RAIL_API_PINVOKE.RailImageDataDescriptor_stride_in_bytes_set(ptr, data.stride_in_bytes);\n 2146        RAIL_API_PINVOKE.RailImageDataDescriptor_image_width_set(ptr, data.image_width);\n 2147        RAIL_API_PINVOKE.RailImageDataDescriptor_bits_per_pixel_set(ptr, data.bits_per_pixel);\n\nC:\\dspSourceold\\Assembly-CSharp\\rail\\RailImageDataDescriptor.cs:\n   11      public EnumRailImagePixelFormat pixel_format;\n   12      public uint image_height;\n   13:     public uint stride_in_bytes;\n   14      public uint image_width;\n   15      public uint bits_per_pixel;\n\nC:\\dspSourceold\\Assembly-CSharp\\TestPlanetLevel.cs:\n   50        point + quaternion2 * (new Vector3(-1f, 0.0f, 1f) * num1)\n   51      };\n   52:     int stride = data.stride;\n   53      int dataLength = data.dataLength;\n   54      foreach (Vector3 vpos in vector3Array)\n   ..\n   57        for (int index1 = -num4; index1 <= num4; ++index1)\n   58        {\n   59:         int num6 = num5 + index1 * stride;\n   60          if (num6 >= 0 && num6 < dataLength)\n   61          {\n\nC:\\dspSourceold\\Assembly-CSharp\\VertaBuffer.cs:\n   15    public int vertexCount;\n   16    public int frameCount;\n   17:   public int frameStride;\n   18    public int dataLength;\n   19    public int memSize;\n   ..\n   34      this.vertexCount = _vertexCount;\n   35      this.frameCount = _frameCount;\n   36:     this.frameStride = this.vertexCount * this.vertexSize;\n   37:     this.dataLength = this.frameStride * this.frameCount;\n   38      this.memSize = this.dataLength * 4;\n   39      if (this.dataLength > 0)\n   ..\n   74      this.vertexCount = 0;\n   75      this.frameCount = 0;\n   76:     this.frameStride = 0;\n   77      this.dataLength = 0;\n   78      this.memSize = 0;\n   ..\n   87      this.vertexCount = 0;\n   88      this.frameCount = 0;\n   89:     this.frameStride = 0;\n   90      this.dataLength = 0;\n   91      this.memSize = 0;\n\n256 matches across 36 files\n\n\nSearching 3566 files for \"veincir\"\n\nC:\\dspSourceold\\Assembly-CSharp\\Backup\\BuildingGizmo.cs:\n   27    public Color previewOkColor;\n   28    public Color previewErrorColor;\n   29:   public Dictionary<int, CircleGizmo> veinCircles;\n   30    private static List<int> tmp_ids;\n   31    private static Dictionary<int, List<BuildingGizmo>> pool;\n   ..\n   51      }\n   52      BuildingGizmo buildingGizmo = Object.Instantiate<BuildingGizmo>(Configs.builtin.buildingGizmoPrefab, GameGizmo.gizmoGroup);\n   53:     buildingGizmo.veinCircles = new Dictionary<int, CircleGizmo>();\n   54      buildingGizmo.Reset();\n   55      buildingGizmo.SetGizmoDesc(desc);\n   ..\n  177      foreach (Component slotGizmo in this.slotGizmos)\n  178        slotGizmo.gameObject.SetActive(false);\n  179:     foreach (KeyValuePair<int, CircleGizmo> veinCircle in this.veinCircles)\n  180:       veinCircle.Value.Close();\n  181:     this.veinCircles.Clear();\n  182      this.areaGizmo0.gameObject.SetActive(false);\n  183      this.areaGizmo1.gameObject.SetActive(false);\n  ...\n  253        return;\n  254      BuildingGizmo.tmp_ids.Clear();\n  255:     foreach (KeyValuePair<int, CircleGizmo> veinCircle in this.veinCircles)\n  256      {\n  257:       if (!this.IsInRefArr(veinCircle.Value.relateId))\n  258        {\n  259:         veinCircle.Value.Close();\n  260:         BuildingGizmo.tmp_ids.Add(veinCircle.Key);\n  261        }\n  262      }\n  263      for (int index = 0; index < BuildingGizmo.tmp_ids.Count; ++index)\n  264:       this.veinCircles.Remove(BuildingGizmo.tmp_ids[index]);\n  265      foreach (int key in this.desc.refArr)\n  266      {\n  267        VeinData veinData = GameMain.localPlanet.factory.veinPool[key];\n  268:       if (veinData.id == key && key != 0 && !this.veinCircles.ContainsKey(key))\n  269        {\n  270          CircleGizmo circleGizmo = CircleGizmo.Create(4, veinData.pos, 1.2f);\n  ...\n  278          circleGizmo.relateType = EObjectType.Vein;\n  279          circleGizmo.Open();\n  280:         this.veinCircles.Add(key, circleGizmo);\n  281        }\n  282      }\n\nC:\\dspSourceold\\Assembly-CSharp\\BuildingGizmo.cs:\n   27    public Color previewOkColor;\n   28    public Color previewErrorColor;\n   29:   public Dictionary<int, CircleGizmo> veinCircles;\n   30    private static List<int> tmp_ids;\n   31    private static Dictionary<int, List<BuildingGizmo>> pool;\n   ..\n   51      }\n   52      BuildingGizmo buildingGizmo = Object.Instantiate<BuildingGizmo>(Configs.builtin.buildingGizmoPrefab, GameGizmo.gizmoGroup);\n   53:     buildingGizmo.veinCircles = new Dictionary<int, CircleGizmo>();\n   54      buildingGizmo.Reset();\n   55      buildingGizmo.SetGizmoDesc(desc);\n   ..\n  177      foreach (Component slotGizmo in this.slotGizmos)\n  178        slotGizmo.gameObject.SetActive(false);\n  179:     foreach (KeyValuePair<int, CircleGizmo> veinCircle in this.veinCircles)\n  180:       veinCircle.Value.Close();\n  181:     this.veinCircles.Clear();\n  182      this.areaGizmo0.gameObject.SetActive(false);\n  183      this.areaGizmo1.gameObject.SetActive(false);\n  ...\n  253        return;\n  254      BuildingGizmo.tmp_ids.Clear();\n  255:     foreach (KeyValuePair<int, CircleGizmo> veinCircle in this.veinCircles)\n  256      {\n  257:       if (!this.IsInRefArr(veinCircle.Value.relateId))\n  258        {\n  259:         veinCircle.Value.Close();\n  260:         BuildingGizmo.tmp_ids.Add(veinCircle.Key);\n  261        }\n  262      }\n  263      for (int index = 0; index < BuildingGizmo.tmp_ids.Count; ++index)\n  264:       this.veinCircles.Remove(BuildingGizmo.tmp_ids[index]);\n  265      foreach (int key in this.desc.refArr)\n  266      {\n  267        VeinData veinData = GameMain.localPlanet.factory.veinPool[key];\n  268:       if (veinData.id == key && key != 0 && !this.veinCircles.ContainsKey(key))\n  269        {\n  270          CircleGizmo circleGizmo = CircleGizmo.Create(4, veinData.pos, 1.2f);\n  ...\n  278          circleGizmo.relateType = EObjectType.Vein;\n  279          circleGizmo.Open();\n  280:         this.veinCircles.Add(key, circleGizmo);\n  281        }\n  282      }\n\n28 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 73656,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/C/dspSourceold/Assembly-CSharp/BuildingGizmo.cs",
+			"settings":
+			{
+				"buffer_size": 11436,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/dspSourceold/Assembly-CSharp/BuildGizmoDesc.cs",
+			"settings":
+			{
+				"buffer_size": 1239,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/dspSourceold/Assembly-CSharp/CapsLockUtils.cs",
+			"settings":
+			{
+				"buffer_size": 362,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "markActivePos.GetValue(lower + lhs);\n            markActivePos.GetValue(lower - lhs);\n            markActivePos.GetValue(lower + vector3_2);\n            markActivePos.GetValue(lower - vector3_2);\n            markActivePos.GetValue(lower + lhs + vector3_2);\n            markActivePos.GetValue(lower - lhs + vector3_2);\n            markActivePos.GetValue(lower + lhs - vector3_2);\n            markActivePos.GetValue(lower - lhs - vector3_2);",
+			"settings":
+			{
+				"buffer_size": 439,
+				"line_ending": "Windows",
+				"name": "markActivePos.GetValue(lower + lhs);"
+			}
+		},
+		{
+			"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/dsp.galactic-scale.planet-size.cfg",
+			"settings":
+			{
+				"buffer_size": 2414,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.galaxy-size-select.cfg",
+			"settings":
+			{
+				"buffer_size": 368,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.planet-size.cfg",
+			"settings":
+			{
+				"buffer_size": 2554,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "BuildPreview buildPreview = __instance.buildPreviews[0];\n            if (buildPreview.condition == EBuildCondition.Ok)\n            {\n                Vector3 vector3_1 = __instance.previewPose.position + __instance.previewPose.rotation * buildPreview.lpos;\n                Vector3 vector3_2 = __instance.previewPose.position + __instance.previewPose.rotation * buildPreview.lpos2;\n                Pose pose;\n                pose.position = __instance.previewPose.position + __instance.previewPose.rotation * buildPreview.lpos;\n                pose.rotation = __instance.previewPose.rotation * buildPreview.lrot;\n\n                if (buildPreview.desc.veinMiner)\n                {\n                    Array.Clear((Array)____tmp_ids, 0, ____tmp_ids.Length);\n                    Vector3 center = pose.position + pose.forward * -1.2f;\n                    Vector3 rhs1 = -pose.forward;\n                    Vector3 up = pose.up;\n                    int veinsInAreaNonAlloc = __instance.nearcdLogic.GetVeinsInAreaNonAlloc(center, 12f, ____tmp_ids);\n                    PrebuildData prebuildData = new PrebuildData();\n                    prebuildData.InitRefArray(veinsInAreaNonAlloc);\n                    VeinData[] veinPool = __instance.factory.veinPool;\n                    int num1 = 0;\n                    for (int index2 = 0; index2 < veinsInAreaNonAlloc; ++index2)\n                    {\n                        if (____tmp_ids[index2] != 0 && veinPool[____tmp_ids[index2]].id == ____tmp_ids[index2])\n                        {\n                            if (veinPool[____tmp_ids[index2]].type != EVeinType.Oil)\n                            {\n                                Vector3 rhs2 = veinPool[____tmp_ids[index2]].pos - center;\n                                float f = Vector3.Dot(up, rhs2);\n                                rhs2 -= up * f;\n                                float sqrMagnitude = rhs2.sqrMagnitude;\n                                float num2 = Vector3.Dot(rhs2.normalized, rhs1);\n                                if ((double)sqrMagnitude <= 961.0 / 16.0 && (double)num2 >= 0.730000019073486 && (double)Mathf.Abs(f) <= 2.0)\n                                    prebuildData.refArr[num1++] = ____tmp_ids[index2];\n                            }\n                        }\n                        else\n                            Assert.CannotBeReached();\n                    }\n                    prebuildData.refCount = num1;\n                    prebuildData.ArrageRefArray();\n                    buildPreview.refArr = prebuildData.refArr;\n                    buildPreview.refCount = prebuildData.refCount;\n                    Array.Clear((Array)____tmp_ids, 0, ____tmp_ids.Length);\n                    if (prebuildData.refCount == 0)\n                    {\n                        buildPreview.condition = EBuildCondition.NeedResource;\n                    }\n                }\n            }\n            return __result;",
+			"settings":
+			{
+				"buffer_size": 2928,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/dspSourceold/Assembly-CSharp/Backup/PlanetRawData.cs",
+			"settings":
+			{
+				"buffer_size": 15311,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"bookm",
+				"BetterBookmarks: Add Bookmark"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 157.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/inno/Documents/customizing.space",
+		"/C/Users/inno/Documents/customizing.space/src",
+		"/C/Users/inno/Documents/customizing.space/src/components",
+		"/C/Users/inno/Documents/customizing.space/src/layouts",
+		"/C/Users/inno/Documents/customizing.space/src/lib",
+		"/C/Users/inno/Documents/customizing.space/src/pages",
+		"/C/Users/inno/Documents/customizing.space/src/router",
+		"/C/dspSourceold",
+		"/C/dspSourceold/Assembly-CSharp"
+	],
+	"file_history":
+	[
+		"/C/Users/inno/Downloads/message.txt",
+		"/C/Users/inno/Documents/customizing.space/src/pages/MMZ.vue",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/router/index.js",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/pages/plansize.vue",
+		"/C/Users/inno/Documents/customizing.space/src/router/index.js",
+		"/C/Users/inno/Documents/customizing.space/src/components/MOrbit.vue",
+		"/C/Users/inno/Documents/customizing.space/src/components/POrbit.vue",
+		"/C/Users/inno/Documents/customizing.space/src/index.template.html",
+		"/C/Users/inno/Documents/customizing.space/src/components/Star.vue",
+		"/C/Users/inno/Documents/customizing.space/src/router/routes.js",
+		"/C/Users/inno/Documents/customizing.space/src/layouts/MainLayout.vue",
+		"/C/Users/inno/Downloads/GalacticScale.json",
+		"/C/GSMod/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/Commons/Model/Generator/GeneratorCluster.cs",
+		"/C/GSMod/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/Commons/Model/Generator/GeneratorSystem.cs",
+		"/C/GSMod/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/Commons/Model/TidalLevel.cs",
+		"/C/GSMod/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/PatchStarSystemGeneration/Generator/SystemGenerator.cs",
+		"/C/Users/inno/Documents/customizing.space/src/pages/inno.vue",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/index.template.html",
+		"/C/Users/inno/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
+		"/C/Users/inno/Documents/customizing.space/src/mixins/mt.js",
+		"/C/Users/inno/Documents/customizing.space/src/lib/mt.js",
+		"/C/Users/inno/Documents/Galactic/sftp-config.json",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/dsp.galactic-scale.planet-size.cfg",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/dsp.galactic-scale.star-system-generation.cfg",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/pages/sysgen.vue",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/pages/test.vue",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/src/router/routes.js",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/README.md",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/.sftp_config",
+		"/C/Users/inno/Documents/Galactic/sftp-config-alt.json",
+		"/C/GS/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/PatchPlanetSize/PatchOnPlanetRawData.cs",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/dsp.galactic-scale.galaxy-size-select.cfg",
+		"/C/GS/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/PatchStarSystemGeneration/Rework/ReworkCreatePlanet.cs",
+		"/C/GS/DSP_Plugins/DSP_Plugins.GalacticScale/Scripts/PatchPlanetSize/Rework/ReworkCreatePlanet.cs",
+		"/C/Users/inno/Downloads/dsp.galactic-scale.star-system-generation (3).cfg",
+		"/C/Users/inno/Documents/Galactic/Galactic-Scale-Configurator/quasar.conf.js",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.planet-size.cfg",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.star-system-generation.cfg",
+		"/C/t/DSP_Plugins/DSP_Plugins.GalacticScale/DSP_Plugins.GalacticScale.csproj",
+		"/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/Default/BepInEx/config/touhma.dsp.galactic-scale.galaxy-size-select.cfg",
+		"/C/touhma/DSP_Plugins.QOLFeatures/DSP_Plugins.QOLFeatures.csproj",
+		"/C/touhma/DSP_Plugins.GalacticScale/DSP_Plugins.GalacticScale.csproj",
+		"/C/Users/inno/Documents/Galactic/src/index.template.html",
+		"/C/Users/inno/Documents/Galactic/src/layouts/MainLayout.vue",
+		"/C/Users/inno/Documents/Galactic/src/components/EssentialLink.vue",
+		"/C/Users/inno/Documents/Galactic/src/router/index.js",
+		"/C/Users/inno/Documents/Galactic/src/App.vue",
+		"/C/Users/inno/Documents/Galactic/src/components/StarParams.vue",
+		"/C/Users/inno/Documents/Galactic/quasar.conf.js",
+		"/C/Program Files (x86)/Steam/steamapps/appmanifest_294100.acf",
+		"/C/Program Files (x86)/Steam/steamapps/appmanifest_1366540.acf",
+		"/C/Program Files (x86)/Steam/steamapps/common/Dyson Sphere Program/BepInEx/plugins/Windows10CE-IcarusColorPicker/README.md",
+		"/C/Users/inno/Documents/Dyson Sphere Program/Save/Shadir.dsv"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"C:\\dspSourceold\\Assembly-CSharp"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"center",
+			"refarr",
+			"veincir",
+			"__instance._tmp_ids",
+			"_instance",
+			"this",
+			"stride",
+			"dataLength",
+			"initmoddata",
+			"moddata",
+			"modData",
+			"q-card",
+			"Pm",
+			"lanet",
+			"star",
+			"Planets",
+			"}",
+			"==",
+			"spectral: 1",
+			"s == 1",
+			"Nb",
+			"+ ",
+			".toString()",
+			"let",
+			"==",
+			"let",
+			"genSettings",
+			";",
+			"galaxy",
+			";",
+			"float ",
+			"int ",
+			"uicur",
+			"oil",
+			"this.galaxy.star[StarNum].POrbit[i].sPORad > MaxJRad",
+			"tassignp",
+			"\"",
+			"<< ",
+			"\\t",
+			"cout << \"",
+			"genSettings",
+			"name:",
+			"https://dsp-wiki.com/Stars_and_planets#/media/File:Black_Hole.png",
+			";",
+			"break",
+			" break",
+			"if (this.sSSpc ",
+			"if (this.sSSpc <=",
+			"setsysmax",
+			"radius = ",
+			"let ",
+			"int ",
+			",,",
+			";",
+			"int ",
+			"double ",
+			"float ",
+			";",
+			"float ",
+			"int ",
+			";",
+			"currentSettings",
+			"Gas Giant"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 11,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/inno/Documents/customizing.space/src/components/iStar.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5500,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								376,
+								376
+							],
+							[
+								535,
+								535
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/inno/Documents/customizing.space/src/components/iPlanet.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3121,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								339,
+								339
+							],
+							[
+								361,
+								361
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/inno/Documents/customizing.space/src/layouts/MainLayout.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2607,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								2139,
+								2139
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1140.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/inno/Documents/customizing.space/src/pages/inno.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2036,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 73656,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										200,
+										207
+									],
+									[
+										371,
+										378
+									],
+									[
+										412,
+										419
+									],
+									[
+										611,
+										618
+									],
+									[
+										958,
+										965
+									],
+									[
+										988,
+										995
+									],
+									[
+										1007,
+										1014
+									],
+									[
+										1289,
+										1296
+									],
+									[
+										1418,
+										1425
+									],
+									[
+										1436,
+										1443
+									],
+									[
+										1472,
+										1479
+									],
+									[
+										1485,
+										1492
+									],
+									[
+										1538,
+										1545
+									],
+									[
+										1570,
+										1577
+									],
+									[
+										1680,
+										1687
+									],
+									[
+										1804,
+										1811
+									],
+									[
+										2035,
+										2042
+									],
+									[
+										2087,
+										2094
+									],
+									[
+										2243,
+										2250
+									],
+									[
+										2295,
+										2302
+									],
+									[
+										2449,
+										2456
+									],
+									[
+										2649,
+										2656
+									],
+									[
+										2701,
+										2708
+									],
+									[
+										2930,
+										2937
+									],
+									[
+										3101,
+										3108
+									],
+									[
+										3142,
+										3149
+									],
+									[
+										3341,
+										3348
+									],
+									[
+										3681,
+										3688
+									],
+									[
+										3711,
+										3718
+									],
+									[
+										3730,
+										3737
+									],
+									[
+										4005,
+										4012
+									],
+									[
+										4134,
+										4141
+									],
+									[
+										4152,
+										4159
+									],
+									[
+										4188,
+										4195
+									],
+									[
+										4201,
+										4208
+									],
+									[
+										4254,
+										4261
+									],
+									[
+										4286,
+										4293
+									],
+									[
+										4396,
+										4403
+									],
+									[
+										4520,
+										4527
+									],
+									[
+										4751,
+										4758
+									],
+									[
+										4803,
+										4810
+									],
+									[
+										4959,
+										4966
+									],
+									[
+										5011,
+										5018
+									],
+									[
+										5165,
+										5172
+									],
+									[
+										5365,
+										5372
+									],
+									[
+										5417,
+										5424
+									],
+									[
+										5810,
+										5821
+									],
+									[
+										6066,
+										6077
+									],
+									[
+										6446,
+										6457
+									],
+									[
+										6695,
+										6706
+									],
+									[
+										7040,
+										7050
+									],
+									[
+										7058,
+										7068
+									],
+									[
+										7295,
+										7305
+									],
+									[
+										7539,
+										7549
+									],
+									[
+										7879,
+										7889
+									],
+									[
+										8194,
+										8204
+									],
+									[
+										8491,
+										8501
+									],
+									[
+										8803,
+										8813
+									],
+									[
+										9098,
+										9108
+									],
+									[
+										9410,
+										9420
+									],
+									[
+										9655,
+										9665
+									],
+									[
+										9969,
+										9979
+									],
+									[
+										10264,
+										10274
+									],
+									[
+										10578,
+										10588
+									],
+									[
+										10875,
+										10885
+									],
+									[
+										11189,
+										11199
+									],
+									[
+										11486,
+										11496
+									],
+									[
+										11801,
+										11811
+									],
+									[
+										12014,
+										12024
+									],
+									[
+										12044,
+										12054
+									],
+									[
+										12287,
+										12297
+									],
+									[
+										12503,
+										12513
+									],
+									[
+										12699,
+										12709
+									],
+									[
+										12717,
+										12727
+									],
+									[
+										12892,
+										12902
+									],
+									[
+										13108,
+										13118
+									],
+									[
+										13338,
+										13348
+									],
+									[
+										13504,
+										13514
+									],
+									[
+										13522,
+										13532
+									],
+									[
+										13574,
+										13584
+									],
+									[
+										13624,
+										13634
+									],
+									[
+										13674,
+										13684
+									],
+									[
+										13725,
+										13735
+									],
+									[
+										13777,
+										13787
+									],
+									[
+										13828,
+										13838
+									],
+									[
+										14076,
+										14086
+									],
+									[
+										14168,
+										14178
+									],
+									[
+										14387,
+										14397
+									],
+									[
+										14505,
+										14515
+									],
+									[
+										14721,
+										14731
+									],
+									[
+										14926,
+										14936
+									],
+									[
+										15107,
+										15117
+									],
+									[
+										15328,
+										15338
+									],
+									[
+										15578,
+										15588
+									],
+									[
+										15813,
+										15823
+									],
+									[
+										16063,
+										16073
+									],
+									[
+										16301,
+										16311
+									],
+									[
+										16319,
+										16329
+									],
+									[
+										16504,
+										16514
+									],
+									[
+										16714,
+										16724
+									],
+									[
+										16928,
+										16938
+									],
+									[
+										17129,
+										17139
+									],
+									[
+										17209,
+										17219
+									],
+									[
+										17245,
+										17255
+									],
+									[
+										17321,
+										17331
+									],
+									[
+										17467,
+										17477
+									],
+									[
+										17485,
+										17495
+									],
+									[
+										17675,
+										17685
+									],
+									[
+										17868,
+										17878
+									],
+									[
+										18011,
+										18021
+									],
+									[
+										18201,
+										18211
+									],
+									[
+										18446,
+										18456
+									],
+									[
+										18464,
+										18474
+									],
+									[
+										18701,
+										18711
+									],
+									[
+										18938,
+										18948
+									],
+									[
+										19271,
+										19281
+									],
+									[
+										19586,
+										19596
+									],
+									[
+										19876,
+										19886
+									],
+									[
+										20188,
+										20198
+									],
+									[
+										20476,
+										20486
+									],
+									[
+										20788,
+										20798
+									],
+									[
+										21026,
+										21036
+									],
+									[
+										21340,
+										21350
+									],
+									[
+										21628,
+										21638
+									],
+									[
+										21942,
+										21952
+									],
+									[
+										22232,
+										22242
+									],
+									[
+										22546,
+										22556
+									],
+									[
+										22836,
+										22846
+									],
+									[
+										23151,
+										23161
+									],
+									[
+										23357,
+										23367
+									],
+									[
+										23387,
+										23397
+									],
+									[
+										23630,
+										23640
+									],
+									[
+										23846,
+										23856
+									],
+									[
+										24042,
+										24052
+									],
+									[
+										24060,
+										24070
+									],
+									[
+										24235,
+										24245
+									],
+									[
+										24451,
+										24461
+									],
+									[
+										24674,
+										24684
+									],
+									[
+										24840,
+										24850
+									],
+									[
+										24858,
+										24868
+									],
+									[
+										24910,
+										24920
+									],
+									[
+										24960,
+										24970
+									],
+									[
+										25010,
+										25020
+									],
+									[
+										25061,
+										25071
+									],
+									[
+										25113,
+										25123
+									],
+									[
+										25164,
+										25174
+									],
+									[
+										25412,
+										25422
+									],
+									[
+										25504,
+										25514
+									],
+									[
+										25723,
+										25733
+									],
+									[
+										25841,
+										25851
+									],
+									[
+										26057,
+										26067
+									],
+									[
+										26262,
+										26272
+									],
+									[
+										26443,
+										26453
+									],
+									[
+										26664,
+										26674
+									],
+									[
+										26914,
+										26924
+									],
+									[
+										27149,
+										27159
+									],
+									[
+										27399,
+										27409
+									],
+									[
+										27630,
+										27640
+									],
+									[
+										27648,
+										27658
+									],
+									[
+										27833,
+										27843
+									],
+									[
+										28043,
+										28053
+									],
+									[
+										28250,
+										28260
+									],
+									[
+										28451,
+										28461
+									],
+									[
+										28531,
+										28541
+									],
+									[
+										28567,
+										28577
+									],
+									[
+										28643,
+										28653
+									],
+									[
+										28789,
+										28799
+									],
+									[
+										28807,
+										28817
+									],
+									[
+										28997,
+										29007
+									],
+									[
+										29190,
+										29200
+									],
+									[
+										29333,
+										29343
+									],
+									[
+										29523,
+										29533
+									],
+									[
+										29947,
+										29953
+									],
+									[
+										30258,
+										30264
+									],
+									[
+										30272,
+										30278
+									],
+									[
+										30302,
+										30308
+									],
+									[
+										30526,
+										30532
+									],
+									[
+										30568,
+										30574
+									],
+									[
+										30833,
+										30839
+									],
+									[
+										30847,
+										30853
+									],
+									[
+										30878,
+										30884
+									],
+									[
+										31176,
+										31182
+									],
+									[
+										31218,
+										31224
+									],
+									[
+										31511,
+										31517
+									],
+									[
+										31591,
+										31597
+									],
+									[
+										31671,
+										31677
+									],
+									[
+										31751,
+										31757
+									],
+									[
+										31978,
+										31984
+									],
+									[
+										32057,
+										32063
+									],
+									[
+										32399,
+										32405
+									],
+									[
+										32413,
+										32419
+									],
+									[
+										32444,
+										32450
+									],
+									[
+										32738,
+										32744
+									],
+									[
+										32779,
+										32785
+									],
+									[
+										33042,
+										33048
+									],
+									[
+										33056,
+										33062
+									],
+									[
+										33087,
+										33093
+									],
+									[
+										33381,
+										33387
+									],
+									[
+										33422,
+										33428
+									],
+									[
+										33685,
+										33691
+									],
+									[
+										33699,
+										33705
+									],
+									[
+										33730,
+										33736
+									],
+									[
+										34024,
+										34030
+									],
+									[
+										34065,
+										34071
+									],
+									[
+										34329,
+										34335
+									],
+									[
+										34343,
+										34349
+									],
+									[
+										34374,
+										34380
+									],
+									[
+										34672,
+										34678
+									],
+									[
+										34714,
+										34720
+									],
+									[
+										35007,
+										35013
+									],
+									[
+										35087,
+										35093
+									],
+									[
+										35167,
+										35173
+									],
+									[
+										35247,
+										35253
+									],
+									[
+										35474,
+										35480
+									],
+									[
+										35553,
+										35559
+									],
+									[
+										36287,
+										36293
+									],
+									[
+										36301,
+										36307
+									],
+									[
+										36332,
+										36338
+									],
+									[
+										36630,
+										36636
+									],
+									[
+										36672,
+										36678
+									],
+									[
+										36965,
+										36971
+									],
+									[
+										37045,
+										37051
+									],
+									[
+										37125,
+										37131
+									],
+									[
+										37205,
+										37211
+									],
+									[
+										37432,
+										37438
+									],
+									[
+										37511,
+										37517
+									],
+									[
+										37853,
+										37859
+									],
+									[
+										37867,
+										37873
+									],
+									[
+										37898,
+										37904
+									],
+									[
+										38196,
+										38202
+									],
+									[
+										38238,
+										38244
+									],
+									[
+										38531,
+										38537
+									],
+									[
+										38611,
+										38617
+									],
+									[
+										38691,
+										38697
+									],
+									[
+										38771,
+										38777
+									],
+									[
+										39059,
+										39065
+									],
+									[
+										39107,
+										39113
+									],
+									[
+										39159,
+										39165
+									],
+									[
+										39199,
+										39205
+									],
+									[
+										39258,
+										39264
+									],
+									[
+										39308,
+										39314
+									],
+									[
+										39546,
+										39552
+									],
+									[
+										39625,
+										39631
+									],
+									[
+										39648,
+										39654
+									],
+									[
+										39667,
+										39673
+									],
+									[
+										39956,
+										39962
+									],
+									[
+										40295,
+										40301
+									],
+									[
+										40321,
+										40327
+									],
+									[
+										40572,
+										40578
+									],
+									[
+										40754,
+										40760
+									],
+									[
+										40768,
+										40774
+									],
+									[
+										40976,
+										40982
+									],
+									[
+										41279,
+										41285
+									],
+									[
+										41293,
+										41299
+									],
+									[
+										41556,
+										41562
+									],
+									[
+										41845,
+										41851
+									],
+									[
+										42121,
+										42127
+									],
+									[
+										42392,
+										42398
+									],
+									[
+										42668,
+										42674
+									],
+									[
+										43081,
+										43087
+									],
+									[
+										43122,
+										43128
+									],
+									[
+										43528,
+										43534
+									],
+									[
+										43570,
+										43576
+									],
+									[
+										43807,
+										43813
+									],
+									[
+										43895,
+										43901
+									],
+									[
+										43921,
+										43927
+									],
+									[
+										43989,
+										43995
+									],
+									[
+										44216,
+										44222
+									],
+									[
+										44283,
+										44289
+									],
+									[
+										44486,
+										44492
+									],
+									[
+										44500,
+										44506
+									],
+									[
+										44701,
+										44707
+									],
+									[
+										44906,
+										44912
+									],
+									[
+										44920,
+										44926
+									],
+									[
+										45125,
+										45131
+									],
+									[
+										45350,
+										45356
+									],
+									[
+										45364,
+										45370
+									],
+									[
+										45569,
+										45575
+									],
+									[
+										45741,
+										45747
+									],
+									[
+										45755,
+										45761
+									],
+									[
+										45960,
+										45966
+									],
+									[
+										46218,
+										46224
+									],
+									[
+										46255,
+										46261
+									],
+									[
+										46531,
+										46537
+									],
+									[
+										46615,
+										46621
+									],
+									[
+										46751,
+										46757
+									],
+									[
+										46835,
+										46841
+									],
+									[
+										47280,
+										47286
+									],
+									[
+										47339,
+										47345
+									],
+									[
+										47817,
+										47823
+									],
+									[
+										47847,
+										47853
+									],
+									[
+										48249,
+										48255
+									],
+									[
+										48501,
+										48507
+									],
+									[
+										48515,
+										48521
+									],
+									[
+										48745,
+										48751
+									],
+									[
+										48967,
+										48973
+									],
+									[
+										49149,
+										49155
+									],
+									[
+										49233,
+										49239
+									],
+									[
+										49434,
+										49440
+									],
+									[
+										49599,
+										49605
+									],
+									[
+										49918,
+										49924
+									],
+									[
+										50222,
+										50228
+									],
+									[
+										50236,
+										50242
+									],
+									[
+										50266,
+										50272
+									],
+									[
+										50490,
+										50496
+									],
+									[
+										50532,
+										50538
+									],
+									[
+										50790,
+										50796
+									],
+									[
+										50804,
+										50810
+									],
+									[
+										50835,
+										50841
+									],
+									[
+										51133,
+										51139
+									],
+									[
+										51175,
+										51181
+									],
+									[
+										51468,
+										51474
+									],
+									[
+										51548,
+										51554
+									],
+									[
+										51628,
+										51634
+									],
+									[
+										51708,
+										51714
+									],
+									[
+										51935,
+										51941
+									],
+									[
+										52014,
+										52020
+									],
+									[
+										52349,
+										52355
+									],
+									[
+										52363,
+										52369
+									],
+									[
+										52394,
+										52400
+									],
+									[
+										52688,
+										52694
+									],
+									[
+										52729,
+										52735
+									],
+									[
+										52985,
+										52991
+									],
+									[
+										52999,
+										53005
+									],
+									[
+										53030,
+										53036
+									],
+									[
+										53324,
+										53330
+									],
+									[
+										53365,
+										53371
+									],
+									[
+										53621,
+										53627
+									],
+									[
+										53635,
+										53641
+									],
+									[
+										53666,
+										53672
+									],
+									[
+										53960,
+										53966
+									],
+									[
+										54001,
+										54007
+									],
+									[
+										54258,
+										54264
+									],
+									[
+										54272,
+										54278
+									],
+									[
+										54303,
+										54309
+									],
+									[
+										54601,
+										54607
+									],
+									[
+										54643,
+										54649
+									],
+									[
+										54936,
+										54942
+									],
+									[
+										55016,
+										55022
+									],
+									[
+										55096,
+										55102
+									],
+									[
+										55176,
+										55182
+									],
+									[
+										55403,
+										55409
+									],
+									[
+										55482,
+										55488
+									],
+									[
+										56209,
+										56215
+									],
+									[
+										56223,
+										56229
+									],
+									[
+										56254,
+										56260
+									],
+									[
+										56552,
+										56558
+									],
+									[
+										56594,
+										56600
+									],
+									[
+										56887,
+										56893
+									],
+									[
+										56967,
+										56973
+									],
+									[
+										57047,
+										57053
+									],
+									[
+										57127,
+										57133
+									],
+									[
+										57354,
+										57360
+									],
+									[
+										57433,
+										57439
+									],
+									[
+										57768,
+										57774
+									],
+									[
+										57782,
+										57788
+									],
+									[
+										57813,
+										57819
+									],
+									[
+										58111,
+										58117
+									],
+									[
+										58153,
+										58159
+									],
+									[
+										58446,
+										58452
+									],
+									[
+										58526,
+										58532
+									],
+									[
+										58606,
+										58612
+									],
+									[
+										58686,
+										58692
+									],
+									[
+										58967,
+										58973
+									],
+									[
+										59015,
+										59021
+									],
+									[
+										59067,
+										59073
+									],
+									[
+										59107,
+										59113
+									],
+									[
+										59166,
+										59172
+									],
+									[
+										59216,
+										59222
+									],
+									[
+										59454,
+										59460
+									],
+									[
+										59533,
+										59539
+									],
+									[
+										59556,
+										59562
+									],
+									[
+										59575,
+										59581
+									],
+									[
+										59864,
+										59870
+									],
+									[
+										60196,
+										60202
+									],
+									[
+										60222,
+										60228
+									],
+									[
+										60473,
+										60479
+									],
+									[
+										60655,
+										60661
+									],
+									[
+										60669,
+										60675
+									],
+									[
+										60877,
+										60883
+									],
+									[
+										61173,
+										61179
+									],
+									[
+										61187,
+										61193
+									],
+									[
+										61450,
+										61456
+									],
+									[
+										61739,
+										61745
+									],
+									[
+										62015,
+										62021
+									],
+									[
+										62286,
+										62292
+									],
+									[
+										62562,
+										62568
+									],
+									[
+										62975,
+										62981
+									],
+									[
+										63016,
+										63022
+									],
+									[
+										63415,
+										63421
+									],
+									[
+										63457,
+										63463
+									],
+									[
+										63694,
+										63700
+									],
+									[
+										63782,
+										63788
+									],
+									[
+										63808,
+										63814
+									],
+									[
+										63876,
+										63882
+									],
+									[
+										64103,
+										64109
+									],
+									[
+										64170,
+										64176
+									],
+									[
+										64373,
+										64379
+									],
+									[
+										64387,
+										64393
+									],
+									[
+										64588,
+										64594
+									],
+									[
+										64793,
+										64799
+									],
+									[
+										64807,
+										64813
+									],
+									[
+										65012,
+										65018
+									],
+									[
+										65237,
+										65243
+									],
+									[
+										65251,
+										65257
+									],
+									[
+										65456,
+										65462
+									],
+									[
+										65628,
+										65634
+									],
+									[
+										65642,
+										65648
+									],
+									[
+										65847,
+										65853
+									],
+									[
+										66105,
+										66111
+									],
+									[
+										66142,
+										66148
+									],
+									[
+										66411,
+										66417
+									],
+									[
+										66495,
+										66501
+									],
+									[
+										66631,
+										66637
+									],
+									[
+										66715,
+										66721
+									],
+									[
+										67153,
+										67159
+									],
+									[
+										67212,
+										67218
+									],
+									[
+										67690,
+										67696
+									],
+									[
+										67720,
+										67726
+									],
+									[
+										68115,
+										68121
+									],
+									[
+										68360,
+										68366
+									],
+									[
+										68374,
+										68380
+									],
+									[
+										68604,
+										68610
+									],
+									[
+										68819,
+										68825
+									],
+									[
+										69001,
+										69007
+									],
+									[
+										69085,
+										69091
+									],
+									[
+										69286,
+										69292
+									],
+									[
+										69451,
+										69457
+									],
+									[
+										69772,
+										69779
+									],
+									[
+										70074,
+										70081
+									],
+									[
+										70372,
+										70379
+									],
+									[
+										70391,
+										70398
+									],
+									[
+										70417,
+										70424
+									],
+									[
+										70459,
+										70466
+									],
+									[
+										70712,
+										70719
+									],
+									[
+										70731,
+										70738
+									],
+									[
+										70791,
+										70798
+									],
+									[
+										70849,
+										70856
+									],
+									[
+										70916,
+										70923
+									],
+									[
+										71056,
+										71063
+									],
+									[
+										71302,
+										71309
+									],
+									[
+										71550,
+										71557
+									],
+									[
+										71788,
+										71795
+									],
+									[
+										72090,
+										72097
+									],
+									[
+										72388,
+										72395
+									],
+									[
+										72407,
+										72414
+									],
+									[
+										72433,
+										72440
+									],
+									[
+										72475,
+										72482
+									],
+									[
+										72728,
+										72735
+									],
+									[
+										72747,
+										72754
+									],
+									[
+										72807,
+										72814
+									],
+									[
+										72865,
+										72872
+									],
+									[
+										72932,
+										72939
+									],
+									[
+										73072,
+										73079
+									],
+									[
+										73318,
+										73325
+									],
+									[
+										73566,
+										73573
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								73572,
+								73572
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\dspSourceold\\Assembly-CSharp",
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 5,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 30970.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/dspSourceold/Assembly-CSharp/BuildingGizmo.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11436,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								6846,
+								6852
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1602.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/C/dspSourceold/Assembly-CSharp/BuildGizmoDesc.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1239,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/dspSourceold/Assembly-CSharp/CapsLockUtils.cs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 362,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								362,
+								362
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/C#/C#.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								439
+							]
+						],
+						"settings":
+						{
+							"auto_name": "markActivePos.GetValue(lower + lhs);",
+							"default_dir": "C:\\dspSourceold\\Assembly-CSharp",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/dsp.galactic-scale.planet-size.cfg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2414,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.galaxy-size-select.cfg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 368,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/C/Users/inno/AppData/Roaming/r2modmanPlus-local/DysonSphereProgram/profiles/test/BepInEx/config/touhma.dsp.galactic-scale.planet-size.cfg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								962,
+								962
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2928,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1219,
+								1232
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\inno\\Downloads",
+							"incomplete_sync": null,
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/C/dspSourceold/Assembly-CSharp/Backup/PlanetRawData.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15311,
+						"regions":
+						{
+							"better_bookmarks":
+							{
+								"flags": 144,
+								"icon": "Packages/Theme - Default/common/bookmark.png",
+								"regions":
+								[
+								],
+								"scope": "string"
+							}
+						},
+						"selection":
+						[
+							[
+								2014,
+								2018
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 627.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SFTP":
+	{
+		"height": 126.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "README.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 474.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

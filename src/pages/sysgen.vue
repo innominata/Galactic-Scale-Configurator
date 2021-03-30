@@ -14,89 +14,141 @@
     <div v-if="enableCustomStarAlgorithm" style="background-color:#121212;" class="row">
       <q-card class="q-pa-sm col fit">
         <q-card>
-          <div class="text-h6">
-            Starting System Config
+          <div class="text-h6 row">
+            <div>Starting System Config</div><q-space /> <q-icon name="las la-question-circle" @click="helpStartingSystemConfig = !helpStartingSystemConfig"></q-icon>
           </div>
-          <q-input dense input-class="text-right" label="Minimum Telluric Planets" v-model.number="startingSystemMinPlanetTelluricNb">
-            <q-tooltip>The Minimum Number of Telluric planet in the starting system -- should not be less than 2</q-tooltip>
+          <div class="text-italic" v-if="helpStartingSystemConfig">The minimum number of planets for your starting system. These options override any set for the star, and one rocky planet is required to be the starting planet. The maximum number of planets/moons per system is 95</div>
+          <q-input dense input-class="text-right" label="Telluric Planets" v-model.number="startingSystemMinPlanetTelluricNb">
+            <q-tooltip>The number of rocky planets in the starting system </q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Minimum Telluric Moons" v-model.number="startingSystemMinTelluricMoonNb">
-            <q-tooltip>The Minimum Number of Moon of Telluric Planets in the starting system -- should not be less than 1</q-tooltip>
+          <q-slider dense v-model.number="startingSystemMinPlanetTelluricNb" color="blue" markers snap :min="1" :max="Math.min(orbitRadiusArrayPlanetNb - startingSystemMinGasGiantNb, 95 - startingSystemMinGasGiantMoonNb - startingSystemMinTelluricMoonNb - startingSystemMinGasGiantNb)"/>
+
+          <q-input dense input-class="text-right" label="Telluric Moons" v-model.number="startingSystemMinTelluricMoonNb">
+            <q-tooltip>The number of moons around rocky planets in the starting system</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Minimum Gas Giants" v-model.number="startingSystemMinGasGiantNb">
-            <q-tooltip>The Minimum Number of GasGiants in the starting system -- should not be less than 1</q-tooltip>
+          <q-slider dense v-model.number="startingSystemMinTelluricMoonNb" color="blue" markers snap :min="1" :max="Math.min(orbitRadiusArrayMoonsNb - startingSystemMinGasGiantMoonNb, 95 - startingSystemMinGasGiantMoonNb - startingSystemMinPlanetTelluricNb - startingSystemMinGasGiantNb)"/>
+
+          <q-input dense input-class="text-right" label="Gas Giants" v-model.number="startingSystemMinGasGiantNb">
+            <q-tooltip>The number of gas/ice giant planets in the starting system</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Minimum Gas Giant Moons" v-model.number="startingSystemMinGasGiantMoonNb">
-            <q-tooltip>The Minimum Number of Moons of GasGiant  in the starting system -- should not be less than 1</q-tooltip>
+          <q-slider dense v-model.number="startingSystemMinGasGiantNb" color="blue" markers snap :min="0" :max="Math.min(orbitRadiusArrayPlanetNb - startingSystemMinPlanetTelluricNb, 95 - startingSystemMinGasGiantMoonNb - startingSystemMinPlanetTelluricNb - startingSystemMinTelluricMoonNb)"/>
+
+          <q-input dense input-class="text-right" label="Gas Giant Moons" v-model.number="startingSystemMinGasGiantMoonNb">
+            <q-tooltip>The number of moons around gas/ice giant planets in the starting system</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="startingSystemMinGasGiantMoonNb" color="blue" markers snap :min="0" :max="Math.min(orbitRadiusArrayMoonsNb - startingSystemMinTelluricMoonNb, 95 - startingSystemMinTelluricMoonNb - startingSystemMinPlanetTelluricNb - startingSystemMinGasGiantNb)"/>
+
         </q-card>
         <q-card>
-          <div class="text-h6">
-            Planet Config
+          <div class="text-h6 row">
+            <div>Planet Config</div><q-space /> <q-icon name="las la-question-circle" @click="helpPlanetConfig = !helpPlanetConfig"></q-icon>
           </div>
+          <div class="text-italic" v-if="helpPlanetConfig">These options control how planets are generated galaxy-wide.</div>
+
           <q-input dense input-class="text-right" label="Maximum Orbital Inclination" v-model.number="maxOrbitInclination" suffix="°">
             <q-tooltip>Maximum absolute angle value for the Inclination of the orbits</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="maxOrbitInclination" color="blue" markers snap :min="0" :max="90"/>
+
           <q-input dense input-class="text-right" label="Moon Orbital Inclination Factor" v-model.number="moonOrbitInclinationFactor" suffix="x">
             <q-tooltip>If it's a moon the inclination will be multiplied by that factor</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="moonOrbitInclinationFactor" color="blue" markers :min="0" :step="0.1" :max="Math.round(900/maxOrbitInclination)/10"/>
+
           <q-input dense input-class="text-right" label="Neutron Star Inclination Factor" v-model.number="neutronStarOrbitInclinationFactor" suffix="x">
             <q-tooltip>If in a neutron star system the inclination will be multiplied by that factor</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Planet to Lay on Side" v-model.number="chancePlanetLaySide" suffix="%">
+          <q-slider dense v-model.number="neutronStarOrbitInclinationFactor" color="blue" markers :min="0" :step="0.1" :max="Math.round(900/maxOrbitInclination)/10"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for Planet to Lay on Side" v-model.number="chancePlanetLaySide" suffix="%" :rules="[rule100]">
             <q-tooltip>Chance of a planet to be on a rolling orbit --> laying on it's side</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="chancePlanetLaySide" color="blue" markers snap :min="0" :max="100"/>
+
           <q-input dense input-class="text-right" label="LaySide Base Angle" v-model.number="laySideBaseAngle" suffix="°">
             <q-tooltip>Base angle Value used for the LaySide</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="laySideBaseAngle" color="blue" markers snap :min="0" :max="90"/>
+
           <q-input dense input-class="text-right" label="LaySide Variance" v-model.number="laySideAddingAngle" suffix="°">
             <q-tooltip>Angle Value used to add some variation on the LaySide planets</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Big Obliquity" v-model.number="chanceBigObliquity" suffix="%">
+          <q-slider dense v-model.number="laySideAddingAngle" color="blue" markers snap :min="0" :max="90"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for High Axial Tilt" v-model.number="chanceBigObliquity" suffix="%" :rules="[rule100]">
             <q-tooltip>Chance for the planet to have a high obliquity value</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Big Obliquity Base Angle" v-model.number="bigObliquityBaseAngle" suffix="°">
+          <q-slider dense v-model.number="chanceBigObliquity" color="blue" markers snap :min="0" :max="100"/>
+
+          <q-input dense input-class="text-right" label="Axial Tilt Base Angle" v-model.number="bigObliquityBaseAngle" suffix="°">
             <q-tooltip>Base Angle value to have a high obliquity value</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Big Obliquity Variance" v-model.number="bigObliquityAddingAngle" suffix="°">
+          <q-slider dense v-model.number="bigObliquityBaseAngle" color="blue" markers snap :min="0" :max="90"/>
+
+          <q-input dense input-class="text-right" label="Axial Tilt Variance" v-model.number="bigObliquityAddingAngle" suffix="°">
             <q-tooltip>Angle Value used to add some variation on the high Obliquity</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Standard Obliquity Angle" v-model.number="standardObliquityAngle" suffix="°">
+          <q-slider dense v-model.number="bigObliquityAddingAngle" color="blue" markers snap :min="0" :max="90"/>
+
+          <q-input dense input-class="text-right" label="Standard Tilt Angle" v-model.number="standardObliquityAngle" suffix="°">
             <q-tooltip>Base Angle value to use for the obliquity of the planets, it will be the most commonly used</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="standardObliquityAngle" color="blue" markers snap :min="0" :max="90"/>
+
           <q-input dense input-class="text-right" label="Rotation Period Base Time" v-model.number="rotationPeriodBaseTime" suffix="s">
             <q-tooltip>Base value to define the rotation period</q-tooltip>
           </q-input>
+
           <q-input dense input-class="text-right" label="Rotation Period Variance" v-model.number="rotationPeriodVariabilityFactor" suffix="s">
             <q-tooltip>Value used to add some variation ( by default : value between 0-1000 + base value = final value )</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Tidal Lock" v-model.number="chanceTidalLock" suffix="%">
-            <q-tooltip>Chance for a planet to be tidally locked</q-tooltip>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for Tidal Lock" v-model.number="chanceTidalLock" suffix="%" :rules="[rule100]">
+            <q-tooltip>Chance for a planet/moon to be one of the three tidally locked states.</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Tidal Lock1" v-model.number="chanceTidalLock1" suffix="%">
-            <q-tooltip>Chance for a planet to be tidally locked --> internal type : TidalLock1</q-tooltip>
+          <q-slider dense v-model.number="chanceTidalLock" color="blue" markers snap :min="0" :max="100"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for Tidal Lock1" v-model.number="chanceTidalLock1" suffix="%" :rules="[rule100]">
+            <q-tooltip>Chance for a planet/moon to be tidally locked 1:1 with the host body</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Tidal Lock2" v-model.number="chanceTidalLock2" suffix="%">
-            <q-tooltip>Chance for a planet to be tidally locked --> internal type : TidalLock2</q-tooltip>
+          <q-slider dense v-model.number="chanceTidalLock1" color="blue" markers snap :min="0" :max="100"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for Tidal Lock2" v-model.number="chanceTidalLock2" suffix="%" :rules="[rule100]">
+            <q-tooltip>Chance for a planet/moon to be tidally locked 1:2 with the host body</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance for Retrograde Orbit" v-model.number="chanceRetrogradeOrbit" suffix="%">
+          <q-slider dense v-model.number="chanceTidalLock2" color="blue" markers snap :min="0" :max="100"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance for Retrograde Orbit" v-model.number="chanceRetrogradeOrbit" suffix="%" :rules="[rule100]">
             <q-tooltip>Chance for a planet to have a retrograde orbit</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="chanceRetrogradeOrbit" color="blue" markers snap :min="0" :max="100"/>
+
           <q-input dense input-class="text-right" label="Habitable Radius Area Baseline" suffix="AU" v-model.number="habitableRadiusAreaBaseline">
             <q-tooltip>Value to define the width of the habitability area of a star : star.habitableRadius + / - HabitableRadiusAreaBaseline --> meaning for a value of 0.2AU the area is 0.4AU wide</q-tooltip>
           </q-input>
-          <q-input dense input-class="text-right" label="Chance Being Habitable" v-model.number="chanceBeingHabitable" suffix="%">
+          <q-slider dense v-model.number="habitableRadiusAreaBaseline" color="blue" markers :step="0.1" :min="0" :max="useCustomOrbitRadiusArrayPlanets?customOrbitRadiusArrayPlanets[customOrbitRadiusArrayPlanets.length -1].value/2:30"/>
+
+          <q-input hide-bottom-space dense input-class="text-right" label="Chance Being Habitable" v-model.number="chanceBeingHabitable" suffix="%" :rules="[rule100]">
             <q-tooltip>Chance for a planet in the habitability zone of a star to actually be habitable</q-tooltip>
           </q-input>
+          <q-slider dense v-model.number="chanceBeingHabitable" color="blue" markers snap :min="0" :max="100"/>
+
           <q-input dense input-class="text-right" label="Volcano Planet Distance Ratio" v-model.number="volcanoPlanetDistanceRatio" suffix="x">
             <q-tooltip>If planet.distance / star.habitableRadius is less than that --> the planet will be a volcano planet</q-tooltip>
           </q-input>
+
           <q-input dense input-class="text-right" label="Ice Planet Distance Ratio" v-model.number="icePlanetDistanceRatio" suffix="x">
             <q-tooltip>If planet.distance / star.habitableRadius is more than that --> the planet will be an ice planet</q-tooltip>
           </q-input>
+
         </q-card>
       </q-card>
-      <q-card class="q-ml-sm q-pa-sm col fit">
+      <q-card class="q-ml-sm q-pa-sm col fit"> <!-- Custom Parameters for Stars -->
+        <div class="text-h6 row">
+          <div>Star Config</div><q-space /> <q-icon name="las la-question-circle" @click="helpStarConfig = !helpStarConfig"></q-icon>
+
+        </div>
+        <div class="text-italic" v-if="helpStarConfig">These options control how star systems are created.</div>
         <q-card class="q-ma-sm">
           <q-toggle dense label="Use Custom Parameters for Black Holes" v-model="useCustomParamsForBlackHole" />
           <starparams v-if="useCustomParamsForBlackHole" :datums="customParamsForBlackHole" :config="config" @input="(input) => customParamsForBlackHole = input"></starparams>
@@ -142,8 +194,13 @@
         <starparams v-if="useCustomParamsForClassO" :datums="customParamsForClassO" :config="config" @input="(input) => customParamsForClassO = input"></starparams>
         </q-card>
       </q-card>
+
       <q-card class="q-ml-sm q-pa-sm row col fit">
         <q-card class="col items-start ">
+          <div class="text-h6 row">
+            <div>Planet Orbits</div><q-space /> <q-icon name="las la-question-circle" @click="helpPlanetOrbits = !helpPlanetOrbits"></q-icon>
+          </div>
+          <div class="text-italic" v-if="helpPlanetOrbits">These options control where planets are placed around stars. This governs how many planets you may have in total. The last orbit shouldn't be greater than 65AU</div>
           <q-toggle dense label="Use Custom Orbits for Planets" v-model="useCustomOrbitRadiusArrayPlanets"/>
           <div v-if="useCustomOrbitRadiusArrayPlanets">
             <div v-for="(item, q) in orbitRadiusArrayPlanets" :key="q">
@@ -154,9 +211,14 @@
               </q-input>
             </div>
           </div>
-          <q-btn class="row col" dense outline v-if="useCustomOrbitRadiusArrayPlanets" label="Add New Orbit" @click="orbitRadiusArrayPlanets.push({value:-1})"/>
+          <q-btn class="row col" dense outline v-if="useCustomOrbitRadiusArrayPlanets" label="Add New Orbit" @click="addPlanetOrbit"/>
         </q-card>
+
         <q-card class="col items-start ">
+          <div class="text-h6 row">
+            <div>Moon Orbits</div><q-space /> <q-icon name="las la-question-circle" @click="helpMoonOrbits = !helpMoonOrbits"></q-icon>
+          </div>
+          <div class="text-italic" v-if="helpMoonOrbits">These options control where moons are placed around planets. This governs how many moons can be placed around a planet.</div>
           <q-toggle dense label="Use Custom Orbits for Moons" v-model="useCustomOrbitRadiusArrayMoons" />
           <div v-if="useCustomOrbitRadiusArrayMoons">
             <div v-for="(item, q) in orbitRadiusArrayMoons" :key="q">
@@ -167,7 +229,7 @@
               </q-input>
             </div>
           </div>
-          <q-btn dense outline v-if="useCustomOrbitRadiusArrayMoons" label="Add New Orbit" @click="orbitRadiusArrayMoons.push({value:-1})"/>
+          <q-btn dense outline v-if="useCustomOrbitRadiusArrayMoons" label="Add New Orbit" @click="addMoonOrbit"/>
         </q-card>
       </q-card>
     </div>
@@ -184,6 +246,11 @@ export default {
   name: 'SysGen',
   data() {
     return {
+      helpMoonOrbits: false,
+      helpPlanetOrbits: false,
+      helpStarConfig: false,
+      helpStartingSystemConfig: false,
+      helpPlanetConfig: false,
       file: null,
       aOptions: [],
       input: '',
@@ -217,6 +284,8 @@ export default {
       customParamsForClassM: "6,4,12,16,1,0.7,2,0.2,0.7,0.8,0.6,0.3",
       useCustomParamsForClassO: false,
       customParamsForClassO: "10,4,20,16,4,0.2,2,0.2,0.9,0.5,0.9,0.8",
+      // useCustomParamsForClassX: false
+      // CustomParamsForClassX: 0,0,0,0,0,0.,0,0.,0.,0.,0.,0.
       startingSystemMinPlanetTelluricNb: 8,
       startingSystemMinGasGiantNb: 3,
       startingSystemMinTelluricMoonNb: 16,
@@ -247,7 +316,14 @@ export default {
   watch: {
     file() {
       this.loadFile(this.file);
-    }
+    },
+    startingSystemMinGasGiantMoonNb() {
+      if (this.startingSystemMinGasGiantNb == 0 && this.startingSystemMinGasGiantMoonNb > 0 && (this.orbitRadiusArrayPlanetNb - this.startingSystemMinPlanetTelluricNb) > 0)
+        this.startingSystemMinGasGiantNb = 1;
+    },
+    startingSystemMinGasGiantNb() {
+      if (this.startingSystemMinGasGiantNb == 0) this.startingSystemMinGasGiantMoonNb = 0;
+    },
   },
   created() {
       let defaultConfig = `
@@ -307,8 +383,53 @@ ChanceBeingHabitable = 0.4
 VolcanoPlanetDistanceRatio = 0.3
 IcePlanetDistanceRatio = 1.2`
       this.parseFile(defaultConfig)
+      // this.customParamsForBlackHole = this.setParams("1,0,2,0,10,0.95,2,0.9,0.5,0.5,0.5,0.5")
+      // this.customParamsForNeutronStar = this.setParams("2,1,4,6,8,0.85,2,0.1,0.8,0.2,0.5,0.5")
+      // this.customParamsForWhiteDwarf = this.setParams("3,1,6,6,6,0.8,3,0.5,0.6,0.6,0.7,0.2")
+      // this.customParamsForGiantStar = this.setParams("4,1,8,6,6,0.8,3,0.8,0.6,0.6,0.7,0.2")
+      // this.customParamsForClassA = this.setParams("8,3,16,12,3,0.3,3,0.4,0.7,0.4,0.6,0.5")
+      // this.customParamsForClassB = this.setParams("9,4,18,16,5,0.5,2,0.6,0.8,0.5,0.8,0.5")
+      // this.customParamsForClassF = this.setParams("7,2,14,8,3,0.6,2,0.4,0.8,0.7,0.8,0.2")
+      // this.customParamsForClassG = this.setParams("6,2,12,8,3,0.8,2,0.6,0.8,0.6,0.7,0.3")
+      // this.customParamsForClassK = this.setParams("4,4,8,8,2,0.5,2,0.5,0.8,0.8,0.8,0.2")
+      // this.customParamsForClassM = this.setParams("6,4,12,16,1,0.7,2,0.2,0.7,0.8,0.6,0.3")
+      // this.customParamsForClassO = this.setParams("10,4,20,16,4,0.2,2,0.2,0.9,0.5,0.9,0.8")
+
+      // this.chancePlanetLaySide = 4
+      // this.chanceBigObliquity = 10
+      // this.chanceTidalLock = 10
+      // this.chanceTidalLock1 = 4
+      // this.chanceTidalLock2 = 7
+      // this.chanceRetrogradeOrbit = 5
+      // this.chanceBeingHabitable = 40
+
   },
   methods: {
+    round10(n) {
+      return Math.round(n*10)/10;
+    },
+    round100(n) {
+      return Math.round(n*100)/100;
+    },
+    addPlanetOrbit() {
+      let v0 = Number(this.orbitRadiusArrayPlanets[this.orbitRadiusArrayPlanets.length -1].value);
+      let v1 = 0
+      if (this.orbitRadiusArrayPlanets.length > 1) v1 = Number(this.orbitRadiusArrayPlanets[this.orbitRadiusArrayPlanets.length -2].value)
+      let v = v0 + (v0 - v1)
+      this.orbitRadiusArrayPlanets.push({value:this.round100(v)})
+    },
+    addMoonOrbit() {
+      let v0 = Number(this.orbitRadiusArrayMoons[this.orbitRadiusArrayMoons.length -1].value);
+      let v1 = 0
+      if (this.orbitRadiusArrayMoons.length > 1) v1 = Number(this.orbitRadiusArrayMoons[this.orbitRadiusArrayMoons.length -2].value)
+      let v = v0 + (v0 - v1)
+      this.orbitRadiusArrayMoons.push({value:this.round100(v)})
+
+    },
+    rule100(a) {
+      if (a > 100) return 'Value exceeds 100%'
+      return true
+    },
     updateOptions(options) {
       // console.log(options);
       this.aOptions = options
@@ -317,6 +438,7 @@ IcePlanetDistanceRatio = 1.2`
         if (value === 'true') options[i] = true;
         if (value === 'false') options[i] = false;
       }
+      // console.log(options);
       let orap = options.customOrbitRadiusArrayPlanets.split(',');
       orap.shift();
       let oram = options.customOrbitRadiusArrayMoon.split(',');
@@ -327,6 +449,7 @@ IcePlanetDistanceRatio = 1.2`
       oram.forEach((item,i) => {
         oram[i] = { value: item };
       });
+      // console.log(oram, orax);
       this.orbitRadiusArrayMoons = oram;
       this.orbitRadiusArrayPlanets = orap;
       this.enableCustomStarAlgorithm = options.enableCustomStarAlgorithm;
@@ -486,9 +609,14 @@ IcePlanetDistanceRatio = 1.2`
       }
     },
     customOrbitRadiusArrayPlanets () {
+      console.log('customOrbitRadiusArrayPlanets');
       let a = this.orbitRadiusArrayPlanets
-      a.unshift({ value: 0 });
-      const mappedArray = a.map((item) => item.value)
+      let b = [];
+      a.forEach((orbit) => {
+        b.push(orbit);
+      });
+      b.unshift({ value: 0 });
+      const mappedArray = b.map((item) => item.value)
       return mappedArray.join()
     },
     customOrbitRadiusArrayMoon () {

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-card class="q-ma-sm row">
-      <q-toggle v-model="basic" label="Use Limited Resizing Feature (Recommended)"/>
+      <!-- <q-toggle v-model="basic" label="Use Limited Resizing Feature (Recommended)"/> -->
       <q-space />
       <q-file
       outlined
@@ -47,7 +47,7 @@
           >Add New Planet Size</q-btn>
         </q-card>
 
-        <q-card v-if="!basic">
+        <!-- <q-card v-if="!basic">
           <div class="text-h6">Telluric Planet Sizes (Advanced)</div>
           <div class="text-red">This is currently broken, and should not be used.</div>
           <br/>
@@ -59,7 +59,7 @@
             <q-input dense outlined v-model.number="baseTelluricSizeVariationFactor" type="number" label="Variation" @blur="validateTelluricSizes"></q-input>
           </div>
           Planets will be generated in the range of {{Math.max(Number(minTelluricSize), Number(baseTelluricSize) - Number(baseTelluricSizeVariationFactor))}} to {{Math.min(Number(maxTelluricSize), Number(baseTelluricSize) + Number(baseTelluricSizeVariationFactor))}}.
-        </q-card>
+        </q-card> -->
       </q-card>
     </q-card>
 
@@ -231,6 +231,7 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
       this.baseTelluricSize = options.baseTelluricSize;
       this.baseTelluricSizeVariationFactor = options.baseTelluricSizeVariationFactor;
       if (options.enableLimitedResizingFeature == "true") this.basic = true;
+      // console.log(options.enableResizingFeature, 'erf', !!options.enableResizingFeature);
       if (options.enableResizingFeature == "true") this.basic = false;
       this.enableMoonSizeFailSafe = (options.enableMoonSizeFailSafe == "true")?true:false;
       this.maxTelluricSize = options.maxTelluricSize;
@@ -257,8 +258,14 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
         console.log({size, chance: lrc[n]});
         this.planetRadiusArray.push({size, chance: lrc[n]});
       });
+//       planetRadiusArray: [{ size: 50, chance: 5 }, { size: 100, chance: 3 }, { size: 200, chance: 2 }],
+// limitedResizingArray: "150,500,600"
+// limitedResizingChances: "0.5,0.8,1"
+
     },
     loadFile(file) {
+      console.log('file parse');
+      console.log(this.file);
       const reader = new FileReader();
       reader.onload = () => { this.parseFile(reader.result)};
       reader.readAsText(file);
@@ -292,8 +299,10 @@ BaseGasGiantSizeVariationFactor = ${this.baseGasGiantSizeVariationFactor}`
         let key = explodedLine[0];
         const val = explodedLine[2];
         key = key[0].toLowerCase() + key.substr(1,key.length-1);
+        // console.log('Setting', key, val);
         options[key] = val;
       });
+      // console.log(options);
       this.updateOptions(options);
 
     },
